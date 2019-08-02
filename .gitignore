@@ -1,0 +1,9 @@
+public/*
+download/config/*
+*.tar
+*.swi
+*.log
+conf/elasticsearch/data/nodes/
+*.pyc
+*.pcap
+swi/*
