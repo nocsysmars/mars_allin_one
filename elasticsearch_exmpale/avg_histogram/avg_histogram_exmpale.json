@@ -1,0 +1,45 @@
+{
+"query":{
+   "bool":{
+      "must": [
+        {"match":{"plugin":"memory"}},
+        {"match":{"collectd_type":"percent"}},
+        {"match":{"host":"cicada"}},
+        {"match":{"type_instance":"used"}},
+        {"range":{ "@timestamp":{
+                 "gte":"2018-09-11T00:00Z",
+                 "lte": "2018-09-15T23:59Z"
+             }
+           }
+        }
+      ]
+   }
+},
+"sort": [
+  {
+    "@timestamp": {
+      "order": "desc"
+    }
+  }
+],
+"aggs": {
+   "value_per_hour":{
+       "date_histogram":{
+          "field":"@timestamp",
+          "interval":"10m"
+       },
+       "aggs": {
+          "type_instance_val": {
+               "avg":{"field":"value"}
+          }
+       }
+   },
+   "avg_hour_value":{
+       "avg_bucket":{
+          "buckets_path":"value_per_hour>type_instance_val"
+       }
+   }
+},
+"size":2
+}
+

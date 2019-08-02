@@ -1,0 +1,22 @@
+#!/bin/bash
+if [ $# -eq 0 ] || [ $# -gt 1 ]
+then
+  echo "please give one IP address"
+  exit
+fi
+
+ifacename=$(ip addr show | awk '/'$1'/ {print $NF}')
+echo "Interface is $ifacename"
+echo "replace HOST_IFACE by $ifacename"
+sed -i 's/HOST_IFACE/'"$ifacename"'/g' conf/mars/mars_collectd.conf
+
+echo "repplace HOST_IP_TO_ONOS_IP by $1"
+echo "replace conf/mars/mars_collectd.conf"
+sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' conf/mars/mars_collectd.conf
+echo "replace conf/elasticsearch/elasticsearch.yml"
+sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' conf/elasticsearch/elasticsearch.yml
+echo "replace docker-compose.yml"
+sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' docker-compose.yml
+echo "replace conf/kibana/kibana.yml"
+sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' conf/kibana/kibana.yml
+

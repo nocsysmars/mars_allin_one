@@ -1,0 +1,43 @@
+{
+"query":{
+   "bool":{
+      "must": [
+        {"match":{"port":1}},
+        {"match":{"host":"cicada"}},
+        {"range":{ "@timestamp":{
+                 "gte":"2018-09-11T00:00Z",
+                 "lte": "2018-09-15T23:59Z"
+             }
+           }
+        }
+      ]
+   }
+},
+"sort": [
+  {
+    "@timestamp": {
+      "order": "desc"
+    }
+  }
+],
+"aggs": {
+   "value_per_base":{
+       "date_histogram":{
+          "field":"@timestamp",
+          "interval":"10m"
+       },
+       "aggs": {
+          "cal_value": {
+               "avg":{"field":"bytesReceived"}
+          }
+       }
+   },
+   "avg_base_value":{
+       "avg_bucket":{
+          "buckets_path":"value_per_base>cal_value"
+       }
+   }
+},
+"size":0
+}
+

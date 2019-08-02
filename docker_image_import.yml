@@ -1,0 +1,20 @@
+- name: ""
+  hosts: localhost 
+  vars:
+   - path: "{{path}}"
+  tasks: 
+   - name: "import keepalive"
+     shell: docker load -i {{ path }}/docker_tar/keepalived_2.0.1.tar
+   - name: "import elk"
+     shell: docker load -i {{ path }}/docker_tar/elk_630.tar
+   - name: "import nginx"
+     shell: docker load -i {{ path }}/docker_tar/nginx_1.14.0.tar
+   - name: "import mars"
+     shell: docker load -i {{ path }}/docker_tar/mars_1.13.1.tar
+   - name: "create /opt/nocsys if the dir is not exist"
+     file:
+       path: /opt/nocsys
+       state: directory
+       mode: 0755
+   - name: "start docker containers"
+     shell: docker-compose -f {{ path }}/docker-compose.yml up -d

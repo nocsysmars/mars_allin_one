@@ -1,0 +1,2 @@
+rm -rf conf/elasticsearch/data/nodes/
+rm -rf download/config/*

@@ -1,0 +1,23 @@
+---
+- name: Install docker
+  hosts: localhost
+  become: yes
+  gather_facts: True
+  tasks:
+    - include: cn/docker_install_apt.yml
+      when: ansible_pkg_mgr == 'apt' and "{{ WHERE }}" == 'cn'
+
+    - include: cn/docker_install_yum.yml and "{{ WHERE }}" == 'cn'
+      when: ansible_pkg_mgr == 'yum'
+
+    - include: other/docker_install_apt.yml
+      when: ansible_pkg_mgr == 'apt' and "{{ WHERE }}" == 'other'
+
+    - include: other/docker_install_yum.yml and "{{ WHERE }}" == 'other'
+      when: ansible_pkg_mgr == 'yum'
+
+  handlers:
+    # I can't use the service module because of an issue with ansible and upstart :(
+    # https://github.com/ansible/ansible-modules-core/issues/1170
+    - name: restart docker
+      command: service docker restart

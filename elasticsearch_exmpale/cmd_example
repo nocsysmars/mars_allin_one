@@ -1,0 +1,44 @@
+https://doc.dotcms.com/docs/latest/elasticsearch-examples
+
+curl -XPOST -H "Content-Type: application/json" http://127.0.0.1:9200/_search  -d '{"query":{"match_all":{}}}'
+curl -XDELETE http://127.0.0.1:9200/portstats
+
+curl -g -XGET http://127.0.0.1:9200/logstash/_search?q=@timestamp:['2018-09-29+TO+2018-09-30']'&'size=5
+ 
+curl -XGET http://127.0.0.1:9200/_cat/indices?v
+
+#set dynamic add field
+curl -XPUT -H "Content-Type: application/json" http://127.0.0.1:9200/filebeat/_settings -d '{"index.mapper.dynamic":true}'
+curl -XGET -H "Content-Type: application/json" http://127.0.0.1:9200/filebeat/_settings
+
+curl -XPOST -H "Content-Type: application/json" http://127.0.0.1:9200/_search  --data "@/home/manager/elastic_search_cpu.json"
+
+curl -XPOST -H "Content-Type: application/json" http://127.0.0.1:9200/logstash/_mapping/doc/ -d '{"properties":{"type_instance":{"type":"text","fielddata":true}}}'
+
+curl -XGET -H "Content-Type: application/json" http://127.0.0.1:9200/_nodes/?pretty
+
+curl -XPOST -H "Content-Type: application/json" http://127.0.0.1:9200/_snapshot/my_backup -d '{"type":"fs", "settings":{"location":"/mnt/backup/gotest"}}'
+
+curl -XGET http://127.0.0.1:9200/_snapshot/my_backup/_current
+
+#https://www.elastic.co/guide/en/elasticsearch/reference/6.x/disk-allocator.html
+curl -XPUT -g -H 'Content-Type: application/json' 'http://127.0.0.1:9200/logstash/_settings' -d '{
+  "index": {
+    "blocks": {
+      "read_only_allow_delete": "false"
+    }
+  }
+}'
+
+curl -XPUT -g -H 'Content-Type: application/json' 'http://127.0.0.1:9200/_settings' -d '{
+  "index": {
+    "blocks": {
+      "read_only_allow_delete": "false"
+    }
+  }
+}'
+
+#scroll search, not the next-stop don't have index
+#get firt request returned scroll_id to be next search
+curl -XGET -g -H "Content-Type: application/json" http://127.0.0.1:9200/logstash/_search?q=@timestamp:["2018-01-01"+TO+"2018-09-30"]'&'size=2'&'scroll=1m
+curl -XGET -g -H "Content-Type: application/json" http://127.0.0.1:9200/_search/scroll?scroll_id=DnF1ZXJ5VGhlbkZldGNoBQAAAAAABNZdFnNWOFlsU3F2UUFtV0QzZDVrUnpjSGcAAAAAAATWXhZzVjhZbFNxdlFBbVdEM2Q1a1J6Y0hnAAAAAAAE1l8Wc1Y4WWxTcXZRQW1XRDNkNWtSemNIZwAAAAAABNZgFnNWOFlsU3F2UUFtV0QzZDVrUnpjSGcAAAAAAATWYRZzVjhZbFNxdlFBbVdEM2Q1a1J6Y0hn

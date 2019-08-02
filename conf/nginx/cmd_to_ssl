@@ -1,0 +1,1 @@
+openssl req -config ssl_key_config -new -x509 -sha256 -newkey rsa:2048 -nodes -keyout ssl.key -days 365 -out ssl.crt

@@ -1,0 +1,23 @@
+---
+## Default Elasticsearch configuration from elasticsearch-docker.
+## from https://github.com/elastic/elasticsearch-docker/blob/master/build/elasticsearch/elasticsearch.yml
+#
+cluster.name: "mycluster"
+node.name: "es1"
+network.host: 127.0.0.1
+network.publish_host: HOST_IP_TO_ONOS_IP
+# minimum_master_nodes need to be explicitly set when bound on a public IP
+# set to 1 to allow single node clusters
+# Details: https://github.com/elastic/elasticsearch/pull/17288
+discovery.zen.minimum_master_nodes: 1
+#discovery.zen.minimum_master_nodes: 2
+discovery.zen.ping.unicast.hosts: ["HOST_IP_TO_ONOS_IP"]
+
+#disable to become read only when disk full
+cluster.routing.allocation.disk.threshold_enabled: false
+
+## Use single node discovery in order to disable production mode and avoid bootstrap checks
+## see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+#
+#discovery.type: single-node
+path.repo: ["/mnt/backup"]

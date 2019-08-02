@@ -1,0 +1,22 @@
+{
+	"query":{
+	   "bool":{
+		  "must": [
+			{"match":{"plugin":"df"}},
+			{"match":{"collectd_type":"percent_bytes"}},
+			{"match":{"host":"cicada"}},
+            {"match":{"plugin_instance":"root"}},
+            {"match": { "type_instance" : "used" } },
+			{"range":{ "@timestamp":{"gte":"now-15d/d"}}}
+		  ]
+	   }
+	},
+    "sort": [
+      {
+        "@timestamp": {
+          "order": "asc"
+        }
+      }
+    ],    
+	"size":10
+}

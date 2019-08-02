@@ -1,0 +1,32 @@
+#!/bin/bash
+dhcp=$(netstat -tunlp|grep dhcp)
+#echo $dhcp
+if [ -n "$dhcp" ]
+then 
+  echo "has DHCP server, use service isc-dhcp-server stop"
+fi
+
+vmcount=$(sysctl vm.max_map_count | cut -d "=" -f 2)
+if [ $vmcount != 262144 ]
+then
+ echo "vm.max_map_count < 262144, please set it to 262144"
+else
+ echo $(sysctl vm.max_map_count) " is ok"
+fi
+
+if [ -n "$ONOS_IP" ]; then
+  echo "ONOS_IP env doesn't exported"
+fi
+
+dhcp_listen_port=$(netstat -tunlp | grep -w 67)
+#echo $dhcp_listen_port
+#echo ${#dhcp_listen_port}
+if [ -n "$dhcp_listen_port" ]
+then 
+ echo "There is process litent port 67"
+fi
+
+of_listen_port=$(netstat -tunlp |grep -w 6653)
+if [ -n "$of_listen_port" ]; then
+  echo "There is process listen port 6653"
+fi

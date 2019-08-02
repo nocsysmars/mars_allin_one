@@ -1,0 +1,26 @@
+- name: "Export docker image"
+  hosts: localhost
+  tasks: 
+   - name: Check the directory target exists before install docker
+     stat:
+        path: "./exported_iamges"
+     register: stat_docker
+
+   - name: "Create docker path folder"
+     file:
+        path: "./exported_images"
+        state: directory
+        mode: u=rwX,g=rX,o=rX
+     when: stat_docker.stat.exists == false
+
+   - name: "export keepalive"
+     shell: "docker save -o ./exported_images/keepalived_1.4.5.tar osixia/keepalived:1.4.5"
+     ignore_errors: true
+   - name: "export elk"
+     shell: "docker save -o ./exported_images/elk_6.1.0.tar mars_allin_one_elasticsearch:latest"
+   - name: "export nginx"
+     shell: "docker save -o ./exported_images/nginx_1.14.0.tar nginx:1.14.0"
+   - name: "export logstash"
+     shell: "docker save -o ./exported_images/logstash.tar mars_allin_one_logstash:latest"
+   - name: "export mars"
+     shell: "docker save -o ./exported_images/mars_sia.tar mars:sia"

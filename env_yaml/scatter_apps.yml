@@ -1,0 +1,25 @@
+version: '2'
+services:
+  mars:
+    environment:
+      - "ONOS_APPS=drivers,proxyarp,restsb,snmp,linkdiscovery\
+,com.nocsys.drivers.nocsys.rest\
+,com.nocsys.drivers.nocsys.snmp\
+,com.nocsys.eventclient\
+,com.nocsys.utility\
+,com.nocsys.dhcpserver\
+,com.nocsys.dhcpv6server\
+,com.nocsys.storm-control\
+,com.nocsys.monitor\
+,com.nocsys.ntpserver\
+,com.nocsys.topology\
+,com.nocsys.useraccount\
+,com.nocsys.defaultcfg\
+,org.onosproject.cpman\
+,com.nocsys.healthycheck\
+,com.nocsys.alert\
+,com.nocsys.analyzer\
+,com.nocsys.switchmgmt\
+,com.nocsys.drivers.nocsys.gnmi\
+,com.nocsys.qos\
+,com.nocsys.vlanmgmt"

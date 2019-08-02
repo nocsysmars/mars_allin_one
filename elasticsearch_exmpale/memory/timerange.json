@@ -1,0 +1,20 @@
+{
+	"query":{
+	   "bool":{
+		  "must": [
+			{"match":{"plugin":"memory"}},
+			{"match":{"collectd_type":"percent"}},
+			{"match":{"host":"cicada"}},
+			{"range":{ "@timestamp":{"gte":"now-15d/d"}}}
+		  ]
+	   }
+	},
+    "sort": [
+      {
+        "@timestamp": {
+          "order": "asc"
+        }
+      }
+    ],
+	"size":1000
+}'

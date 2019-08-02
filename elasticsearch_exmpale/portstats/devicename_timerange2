@@ -1,0 +1,22 @@
+{
+"query":{
+   "bool":{
+      "must": [
+        {"match":{"deviceName":"cicada"}},
+        {"range":{ "@timestamp":{
+                 "gte":"2001-01-01",
+                 "lte": "2001-01-02"
+             }
+        }
+      ]
+   }
+},
+"sort": [
+  {
+    "@timestamp": {
+      "order": "asc"
+    }
+  }
+],
+"size":1000
+}

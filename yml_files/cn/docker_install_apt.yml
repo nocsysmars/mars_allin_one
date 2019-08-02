@@ -1,0 +1,26 @@
+---
+- name: add docker apt key
+  apt_key:
+    id: 58118E89F3A912897C070ADBF76221572C52609D
+    keyserver: hkp://p80.pool.sks-keyservers.net:80
+    state: present
+
+- name: add docker apt repository
+  apt_repository:
+    repo: "{{ item }}"
+    filename: docker
+    state: present
+    update_cache: yes
+  with_items:
+    - "deb https://mirrors.tuna.tsinghua.edu.cn/docker/apt/repo ubuntu-xenial main"
+    - "deb https://mirrors.tuna.tsinghua.edu.cn/docker/apt/repo ubuntu-trusty main"
+
+- name: install docker and requirements
+  apt:
+    name: docker-engine
+    update_cache: yes
+    state: present
+
+- name: install docker-compose
+  pip:
+    name: docker-compose
