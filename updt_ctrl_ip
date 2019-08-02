@@ -5,7 +5,11 @@ then
   exit
 fi
 
-ifacename=$(ip addr show | awk '/'$1'/ {print $NF}')
+if [[ $(cat /etc/os-release|grep ^NAME) == *"CentOS"* ]]; then
+  ifacename=$(ip addr show | grep $1 | cut -d " " -f 12)
+else
+  ifacename=$(ip addr show | grep $1 | cut -d " " -f 11)
+fi
 echo "Interface is $ifacename"
 echo "replace HOST_IFACE by $ifacename"
 sed -i 's/HOST_IFACE/'"$ifacename"'/g' conf/mars/mars_collectd.conf
@@ -19,4 +23,3 @@ echo "replace docker-compose.yml"
 sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' docker-compose.yml
 echo "replace conf/kibana/kibana.yml"
 sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' conf/kibana/kibana.yml
-

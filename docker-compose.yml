@@ -41,11 +41,10 @@ services:
     network_mode: host
     volumes:
       - ./conf/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
-      - ./conf/elasticsearch/jvm.options:/usr/share/elasticsearch/config/jvm.options:ro
       - ./conf/elasticsearch/backup:/mnt/backup:rw
       - ./conf/elasticsearch/data:/usr/share/elasticsearch/data:rw
-    #environment:
-      #ES_JAVA_OPTS: "-Xmx1024m -Xms1024m"
+    environment:
+      ES_JAVA_OPTS: "-Xmx1024m -Xms1024m"
       #network.bind_host: "127.0.0.1"
       #network.publish_host: "HOST_IP_TO_ONOS_IP"
       #cluster.name: "marscluster"
@@ -81,7 +80,6 @@ services:
     volumes:
       - ./conf/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./conf/logstash/pipeline:/usr/share/logstash/pipeline:ro
-      - ./conf/logstash/types.db:/usr/share/logstash/types.db:ro
     environment:
       LS_JAVA_OPTS: "-Xmx2g -Xms2g"
     depends_on:
@@ -93,43 +91,14 @@ services:
            max-file: "2"
 
   mars:
-    image: mars:master
+    image: mars:sia
     container_name: mars
     network_mode: host
     privileged: true
     mem_limit: 16g
     environment:
       - "ONOS_IP=HOST_IP_TO_ONOS_IP"
-#      - "KARAF_DEBUG=true"      
-#This APPS for CLOS tenant 
-#to use different ONOS_APPS env, please ref README
-      - "ONOS_APPS=drivers,openflow,proxyarp,restsb,snmp,linkdiscovery\
-,com.nocsys.drivers.nocsys.rest\
-,com.nocsys.drivers.nocsys.snmp\
-,com.nocsys.eventclient\
-,com.nocsys.utility\
-,com.nocsys.dhcpserver\
-,com.nocsys.dhcpv6server\
-,com.nocsys.storm-control\
-,com.nocsys.egp\
-,com.nocsys.endpoint\
-,com.nocsys.logicalport\
-,com.nocsys.monitor\
-,com.nocsys.ntpserver\
-,com.nocsys.sflow\
-,com.nocsys.tenantlogicalrouter\
-,com.nocsys.topology\
-,com.nocsys.useraccount\
-,com.nocsys.tenant\
-,com.nocsys.defaultcfg\
-,org.onosproject.cpman\
-,com.nocsys.healthycheck\
-,com.nocsys.alert\
-,com.nocsys.analyzer\
-,com.nocsys.switchmgmt\
-,com.nocsys.drivers.nocsys.gnmi\
-,com.nocsys.qos"
-
+#      - "KARAF_DEBUG=true"
     volumes:
       - ./conf/mars/modules:/etc/collectd/modules
       - ./conf/mars/mars_collectd.conf:/etc/collectd/collectd.conf

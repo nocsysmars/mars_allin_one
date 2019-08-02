@@ -11,7 +11,7 @@ network.publish_host: HOST_IP_TO_ONOS_IP
 # Details: https://github.com/elastic/elasticsearch/pull/17288
 discovery.zen.minimum_master_nodes: 1
 #discovery.zen.minimum_master_nodes: 2
-discovery.zen.ping.unicast.hosts: ["HOST_IP_TO_ONOS_IP"]
+#discovery.zen.ping.unicast.hosts: ["192.168.3.25", "192.168.3.64"]
 
 #disable to become read only when disk full
 cluster.routing.allocation.disk.threshold_enabled: false
