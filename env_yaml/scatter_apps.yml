@@ -22,4 +22,10 @@ services:
 ,com.nocsys.switchmgmt\
 ,com.nocsys.drivers.nocsys.gnmi\
 ,com.nocsys.qos\
-,com.nocsys.vlanmgmt"
+,com.nocsys.vlanmgmt\
+,com.nocsys.lbd\
+,com.nocsys.dhcpsnooping\
+,com.nocsys.pppoeia\
+,com.nocsys.poe\
+,com.nocsys.qospolicy
+,com.nocsys.acl"
