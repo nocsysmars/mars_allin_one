@@ -2,7 +2,7 @@ version: '2'
 services:
   mars:
     environment:
-       - "ONOS_APPS=drivers,openflow,proxyarp,snmp,linkdiscovery\
+       - "ONOS_APPS=drivers,openflow,fwd,proxyarp,snmp,linkdiscovery\
 ,com.nocsys.drivers.nocsys.snmp\
 ,com.nocsys.eventclient\
 ,com.nocsys.utility\
