@@ -100,6 +100,7 @@ services:
       - "ONOS_IP=HOST_IP_TO_ONOS_IP"
 #      - "KARAF_DEBUG=true"
       - "ONOS_APPS=drivers,openflow,fwd,proxyarp,snmp,linkdiscovery\
+,com.nocsys.drivers.nocsys.rest\
 ,com.nocsys.drivers.nocsys.snmp\
 ,com.nocsys.eventclient\
 ,com.nocsys.utility\
