@@ -18,10 +18,17 @@ if [ $# -eq 1 ]; then
 fi
 
 if [ "$ACTION" = "new" ]; then
- ifacename=$(ip addr show | awk '/'$1'/ {print $NF}')
+ if [[ $(cat /etc/os-release|grep ^NAME) == *"CentOS"* ]]; then
+  ifacename=$(ip addr show | awk '/'$1'/ {print $NF}')
+ else
+  ifacename=$(ip addr show | grep -w $1 | cut -d " " -f 11)
+ fi
  if [ "$ifacename" == "" ]; then
   echo "no interface with this new IP"
   exit
+ fi
+ if [ $# -eq 2 ]; then
+  ACTION="replace"
  fi
 echo "Interface is $ifacename"
 echo "replace HOST_IFACE by $ifacename"
@@ -39,15 +46,27 @@ sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' conf/kibana/kibana.yml
 fi
 
 if [ "$ACTION" = "replace" ]; then
- ifacename=$(ip addr show | awk '/'$2'/ {print $NF}')
- if [ "$ifacename" = "" ]; then
+ if [[ $(cat /etc/os-release|grep ^NAME) == *"CentOS"* ]]; then
+  nifacename=$(ip addr show | awk '/'$2'/ {print $NF}')
+ else
+  nifacename=$(ip addr show | grep -w $2 | cut -d " " -f 11)
+ fi
+ if [ "$nifacename" = "" ]; then
   echo "no interface with this IP"
   exit
  fi
 
-#echo "Interface is $ifacename"
-#echo "replace HOST_IFACE by $ifacename"
-#sed -i 's/HOST_IFACE/'"$ifacename"'/g' conf/mars/mars_collectd.conf
+ if [[ $(cat /etc/os-release|grep ^NAME) == *"CentOS"* ]]; then
+  oifacename=$(ip addr show | awk '/'$1'/ {print $NF}')
+ else
+  oifacename=$(ip addr show | grep $1 | cut -d " " -f 11)
+ fi
+ if [ "$oifacename" = "" ]; then
+  echo "Interface is $ifacename"
+  echo "don't replace $ifacename"
+ else
+  sed -i 's/'"$oifacename"'/'"$nifacename"'/g' conf/mars/mars_collectd.conf
+ fi
 
 echo "repplace $1 by $2"
 echo "replace conf/mars/mars_collectd.conf"
