@@ -1,11 +1,28 @@
 #!/bin/bash
-if [ $# -eq 0 ] || [ $# -gt 1 ]
-then
-  echo "please give one IP address"
-  exit
+
+echo "upctl {old_ip} {new_ip}"
+echo "upctl {new_ip}"
+
+if [ $# -eq 0 ] || [ $# -gt 2 ]; then
+ echo "Please only input old and new IP or new IP"
 fi
 
-ifacename=$(ip addr show | awk '/'$1'/ {print $NF}')
+if [ $# -eq 2 ]; then
+ ACTION="replace"
+ echo $1 $2
+fi
+
+if [ $# -eq 1 ]; then
+ ACTION="new"
+ echo $1
+fi
+
+if [ "$ACTION" = "new" ]; then
+ ifacename=$(ip addr show | awk '/'$1'/ {print $NF}')
+ if [ "$ifacename" == "" ]; then
+  echo "no interface with this new IP"
+  exit
+ fi
 echo "Interface is $ifacename"
 echo "replace HOST_IFACE by $ifacename"
 sed -i 's/HOST_IFACE/'"$ifacename"'/g' conf/mars/mars_collectd.conf
@@ -19,4 +36,31 @@ echo "replace docker-compose.yml"
 sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' docker-compose.yml
 echo "replace conf/kibana/kibana.yml"
 sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' conf/kibana/kibana.yml
+fi
 
+if [ "$ACTION" = "replace" ]; then
+ ifacename=$(ip addr show | awk '/'$2'/ {print $NF}')
+ if [ "$ifacename" = "" ]; then
+  echo "no interface with this IP"
+  exit
+ fi
+
+#echo "Interface is $ifacename"
+#echo "replace HOST_IFACE by $ifacename"
+#sed -i 's/HOST_IFACE/'"$ifacename"'/g' conf/mars/mars_collectd.conf
+
+echo "repplace $1 by $2"
+echo "replace conf/mars/mars_collectd.conf"
+sed -i 's/'"$1"'/'"$2"'/g' conf/mars/mars_collectd.conf
+echo "replace conf/elasticsearch/elasticsearch.yml"
+sed -i 's/'"$1"'/'"$2"'/g' conf/elasticsearch/elasticsearch.yml
+echo "replace docker-compose.yml"
+sed -i 's/'"$1"'/'"$2"'/g' docker-compose.yml
+echo "replace conf/kibana/kibana.yml"
+sed -i 's/'"$1"'/'"$2"'/g' conf/kibana/kibana.yml
+
+fi
+
+if [ "$ACTION" == "" ]; then
+  echo "Do nothing"
+fi
