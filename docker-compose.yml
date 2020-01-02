@@ -128,6 +128,7 @@ services:
 ,com.nocsys.analyzer\
 ,com.nocsys.switchmgmt\
 ,com.nocsys.drivers.nocsys.gnmi\
+,ocm.nocsys.dhcprelay\
 ,com.nocsys.qos"
 
     volumes:
