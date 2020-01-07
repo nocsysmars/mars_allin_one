@@ -107,7 +107,7 @@ services:
 ,com.nocsys.alert\
 ,com.nocsys.analyzer\
 ,com.nocsys.defaultcfg\
-,ocm.nocsys.dhcprelay\
+,cm.nocsys.dhcprelay\
 ,com.nocsys.dhcpserver\
 ,com.nocsys.dhcpv6server\
 ,com.nocsys.drivers.nocsys.gnmi\
