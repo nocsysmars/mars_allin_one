@@ -107,7 +107,7 @@ services:
 ,com.nocsys.alert\
 ,com.nocsys.analyzer\
 ,com.nocsys.defaultcfg\
-,cm.nocsys.dhcprelay\
+,com.nocsys.dhcprelay\
 ,com.nocsys.dhcpserver\
 ,com.nocsys.dhcpv6server\
 ,com.nocsys.drivers.nocsys.gnmi\
@@ -120,6 +120,7 @@ services:
 ,com.nocsys.logicalport\
 ,com.nocsys.monitor\
 ,com.nocsys.ntpserver\
+,com.nocsys.provider.switchpolling\
 ,com.nocsys.qos\
 ,com.nocsys.sflow\
 ,com.nocsys.storm-control\
@@ -128,8 +129,7 @@ services:
 ,com.nocsys.tenantlogicalrouter\
 ,com.nocsys.topology\
 ,com.nocsys.useraccount\
-,com.nocsys.utility\
-,org.onosproject.cpman"  
+,com.nocsys.utility"  
 
     volumes:
       - ./conf/mars/modules:/etc/collectd/modules
