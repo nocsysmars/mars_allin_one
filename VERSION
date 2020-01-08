@@ -1,0 +1,13 @@
+V1.1.1.0
+2020/1/8, Macauley Cheng 
+Release Notes:
+  First Release
+
+
+
+NOTE: VERSION coding rule
+VA.B.C.D
+A: 1
+B: branches name: 1 for Master, 2 for SIA
+C: docker contents changed
+D: little change, add apps or script changed. won't affect majore functions
