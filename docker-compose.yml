@@ -113,6 +113,9 @@ services:
 ,com.nocsys.drivers.nocsys.gnmi\
 ,com.nocsys.drivers.nocsys.rest\
 ,com.nocsys.drivers.nocsys.snmp\
+,org.onosproject.netconf\
+,org.onosproject.drivers.netconf\
+,org.onosproject.drivers.h3c.netconf\
 ,com.nocsys.egp\
 ,com.nocsys.endpoint\
 ,com.nocsys.eventclient\
