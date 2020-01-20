@@ -98,23 +98,26 @@ services:
     mem_limit: 16g
     environment:
       - "ONOS_IP=HOST_IP_TO_ONOS_IP"
-#      - "KARAF_DEBUG=true"
+#     - "KARAF_DEBUG=true"
       - "ONOS_APPS=drivers,openflow,fwd,proxyarp,snmp,linkdiscovery\
-,com.nocsys.drivers.nocsys.rest\
-,com.nocsys.drivers.nocsys.snmp\
-,com.nocsys.eventclient\
-,com.nocsys.utility\
-,com.nocsys.dhcpserver\
-,com.nocsys.dhcpv6server\
-,com.nocsys.ntpserver\
-,com.nocsys.useraccount\
-,com.nocsys.defaultcfg\
-,com.nocsys.healthycheck\
-,com.nocsys.alert\
-,com.nocsys.analyzer\
-,com.nocsys.switchmgmt\
-,com.nocsys.calcpath\
-,com.nocsys.qos"
+        ,com.nocsys.alert\
+        ,com.nocsys.analyzer\
+        ,com.nocsys.calcpath\
+        ,com.nocsys.defaultcfg\
+        ,com.nocsys.dhcpserver\
+        ,com.nocsys.dhcpv6server\
+        ,com.nocsys.drivers.nocsys.gnmi\
+        ,com.nocsys.drivers.nocsys.rest\
+        ,com.nocsys.drivers.nocsys.snmp\
+        ,com.nocsys.eventclient\
+        ,com.nocsys.healthycheck\
+        ,com.nocsys.ntpserver\
+        ,com.nocsys.provider.switchpolling\
+        ,com.nocsys.qos\
+        ,com.nocsys.storm-control\
+        ,com.nocsys.switchmgmt\
+        ,com.nocsys.useraccount\
+        ,com.nocsys.utility"
     volumes:
       - ./conf/mars/modules:/etc/collectd/modules
       - ./conf/mars/mars_collectd.conf:/etc/collectd/collectd.conf
