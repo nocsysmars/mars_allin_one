@@ -103,6 +103,8 @@ services:
         ,com.nocsys.alert\
         ,com.nocsys.analyzer\
         ,com.nocsys.webssh\
+        ,com.nocsys.loopdetect\
+        ,com.nocsys.monitor\
         ,com.nocsys.calcpath\
         ,com.nocsys.defaultcfg\
         ,com.nocsys.dhcpserver\
