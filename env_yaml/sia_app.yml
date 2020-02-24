@@ -7,6 +7,7 @@ services:
 ,com.nocsys.drivers.nocsys.snmp\
 ,com.nocsys.eventclient\
 ,com.nocsys.utility\
+,org.onosproject.dhcprelay \
 ,com.nocsys.dhcpserver\
 ,com.nocsys.dhcpv6server\
 ,com.nocsys.ntpserver\

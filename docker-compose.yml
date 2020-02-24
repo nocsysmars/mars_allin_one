@@ -107,6 +107,7 @@ services:
         ,com.nocsys.monitor\
         ,com.nocsys.calcpath\
         ,com.nocsys.defaultcfg\
+        ,org.onosproject.dhcprelay \
         ,com.nocsys.dhcpserver\
         ,com.nocsys.dhcpv6server\
         ,com.nocsys.drivers.nocsys.gnmi\
