@@ -2,20 +2,28 @@ version: '2'
 services:
   mars:
     environment:
-       - "ONOS_APPS=drivers,openflow,fwd,proxyarp,snmp,linkdiscovery\
-,com.nocsys.drivers.nocsys.rest\
-,com.nocsys.drivers.nocsys.snmp\
-,com.nocsys.eventclient\
-,com.nocsys.utility\
+      - "ONOS_APPS=drivers,openflow,fwd,proxyarp,snmp,linkdiscovery\
+,com.nocsys.alert\
+,com.nocsys.analyzer\
+,com.nocsys.webssh\
+,com.nocsys.loopdetect\
+,com.nocsys.monitor\
+,com.nocsys.calcpath\
+,com.nocsys.defaultcfg\
 ,org.onosproject.dhcprelay \
 ,com.nocsys.dhcpserver\
 ,com.nocsys.dhcpv6server\
-,com.nocsys.ntpserver\
-,com.nocsys.useraccount\
-,com.nocsys.defaultcfg\
+,com.nocsys.drivers.nocsys.gnmi\
+,com.nocsys.drivers.nocsys.rest\
+,com.nocsys.drivers.nocsys.snmp\
+,com.nocsys.eventclient\
 ,com.nocsys.healthycheck\
-,com.nocsys.alert\
-,com.nocsys.analyzer\
+,com.nocsys.ntpserver\
+,com.nocsys.provider.switchpolling\
+,com.nocsys.qos\
+,com.nocsys.storm-control\
 ,com.nocsys.switchmgmt\
-,com.nocsys.qos"
- 
+,com.nocsys.useraccount\
+,com.nocsys.utility\
+,com.nocsys.webssh"
+

@@ -121,7 +121,8 @@ services:
         ,com.nocsys.storm-control\
         ,com.nocsys.switchmgmt\
         ,com.nocsys.useraccount\
-        ,com.nocsys.utility"
+        ,com.nocsys.utility\
+        ,com.nocsys.webssh"
     volumes:
       - ./conf/mars/modules:/etc/collectd/modules
       - ./conf/mars/mars_collectd.conf:/etc/collectd/collectd.conf
