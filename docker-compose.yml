@@ -132,7 +132,8 @@ services:
 ,com.nocsys.tenantlogicalrouter\
 ,com.nocsys.topology\
 ,com.nocsys.useraccount\
-,com.nocsys.utility"  
+,com.nocsys.utility\
+,com.nocsys.webssh"  
 
     volumes:
       - ./conf/mars/modules:/etc/collectd/modules
