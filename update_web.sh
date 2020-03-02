@@ -18,6 +18,10 @@ fi
 echo ''
 echo "==> 3. Replace the public folder"
 cd ..
+
+if [ ! -d "public" ]; then
+  mkdir public
+fi
 rm -rf public/*
 cp -r mars_web/public/* public/
 rm -rf mars_web
