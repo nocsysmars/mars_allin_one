@@ -105,6 +105,7 @@ services:
 #to use different ONOS_APPS env, please ref README
       - "ONOS_APPS=drivers,openflow,proxyarp,restsb,snmp,linkdiscovery\
 ,com.nocsys.alert\
+,com.nocsys.acl\
 ,com.nocsys.analyzer\
 ,com.nocsys.defaultcfg\
 ,com.nocsys.dhcprelay\
