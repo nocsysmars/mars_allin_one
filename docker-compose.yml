@@ -36,6 +36,7 @@ services:
   elasticsearch:
     build:
         context: dockerfile/elasticsearch 
+    image: elasticsearch:6.1.0         
     container_name: elasticsearch
     privileged: true
     network_mode: host
@@ -73,7 +74,8 @@ services:
 
   logstash:
     build: 
-      context: dockerfile/logstash      
+      context: dockerfile/logstash   
+    image: logstash:6.1.0      
     container_name: logstash
     privileged: true
     network_mode: host
