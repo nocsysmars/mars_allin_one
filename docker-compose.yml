@@ -124,6 +124,7 @@ services:
         ,com.nocsys.switchmgmt\
         ,com.nocsys.useraccount\
         ,com.nocsys.utility\
+        ,com.nocsys.staticrouting\
         ,com.nocsys.webssh"
     volumes:
       - ./conf/mars/modules:/etc/collectd/modules
