@@ -25,5 +25,6 @@ services:
 ,com.nocsys.switchmgmt\
 ,com.nocsys.useraccount\
 ,com.nocsys.utility\
+,com.nocsys.staticrouting\
 ,com.nocsys.webssh"
 
