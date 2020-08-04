@@ -12,7 +12,7 @@
    - name: "import nginx"
      shell: docker load -i {{ path }}/docker_tar/nginx_1.14.0.tar
    - name: "import mars"
-     shell: docker load -i {{ path }}/docker_tar/mars_sia.tar
+     shell: docker load -i {{ path }}/docker_tar/mars_master.tar
    - name: "create /opt/nocsys if the dir is not exist"
      file:
        path: /opt/nocsys
