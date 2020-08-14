@@ -144,8 +144,8 @@ services:
       - ./download:/root/onos/download
       - ./download/config/startup_netcfg.cfg:/root/onos/config/network-cfg.json
       - /etc/localtime:/etc/localtime
-    depends_on:
-      - elasticsearch
+    #depends_on:
+    #  - elasticsearch
     logging:
         driver: "json-file"
         options:
