@@ -130,8 +130,8 @@ services:
       - ./conf/mars/modules:/etc/collectd/modules
       - ./conf/mars/mars_collectd.conf:/etc/collectd/collectd.conf
       - ./download:/root/onos/download
-    depends_on:
-      - elasticsearch
+    #depends_on:
+    #  - elasticsearch
     logging:
         driver: "json-file"
         options:
