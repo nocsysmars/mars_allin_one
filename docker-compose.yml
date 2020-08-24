@@ -100,6 +100,7 @@ services:
     mem_limit: 16g
     environment:
       - "ONOS_IP=HOST_IP_TO_ONOS_IP"
+      - "JAVA_OPTS=-Xms16G -Xmx16G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
 #     - "KARAF_DEBUG=true"
       - "ONOS_APPS=drivers,openflow,fwd,proxyarp,snmp,linkdiscovery\
         ,com.nocsys.alert\
