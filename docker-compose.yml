@@ -42,10 +42,11 @@ services:
     network_mode: host
     volumes:
       - ./conf/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ./conf/elasticsearch/jvm.options:/usr/share/elasticsearch/config/jvm.options:ro
       - ./conf/elasticsearch/backup:/mnt/backup:rw
       - ./conf/elasticsearch/data:/usr/share/elasticsearch/data:rw
-    environment:
-      ES_JAVA_OPTS: "-Xmx4096m -Xms4096m"
+    #environment:
+      #ES_JAVA_OPTS: "-Xmx4096m -Xms4096m"
       #network.bind_host: "127.0.0.1"
       #network.publish_host: "HOST_IP_TO_ONOS_IP"
       #cluster.name: "marscluster"
