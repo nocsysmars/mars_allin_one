@@ -21,6 +21,7 @@ services:
     container_name: nginx
     volumes:
         - ./conf/nginx/:/etc/nginx/
+        - ./conf/tftpserver:/etc/xinetd.d
         - ./swi:/opt/
         - ./download:/opt/download
         - ./public:/opt/public
