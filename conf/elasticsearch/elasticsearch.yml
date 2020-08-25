@@ -3,7 +3,7 @@
 ## from https://github.com/elastic/elasticsearch-docker/blob/master/build/elasticsearch/elasticsearch.yml
 #
 cluster.name: "mycluster"
-node.name: "es1"
+node.name: "HOST_NAME"
 network.host: 127.0.0.1
 network.publish_host: HOST_IP_TO_ONOS_IP
 # minimum_master_nodes need to be explicitly set when bound on a public IP
@@ -12,6 +12,7 @@ network.publish_host: HOST_IP_TO_ONOS_IP
 discovery.zen.minimum_master_nodes: 1
 #discovery.zen.minimum_master_nodes: 2
 discovery.zen.ping.unicast.hosts: ["HOST_IP_TO_ONOS_IP"]
+cluster.initial_master_nodes: ["HOST_NAME"]
 
 #disable to become read only when disk full
 cluster.routing.allocation.disk.threshold_enabled: false

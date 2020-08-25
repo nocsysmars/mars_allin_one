@@ -37,7 +37,7 @@ services:
   elasticsearch:
     build:
         context: dockerfile/elasticsearch
-    image: elasticsearch:6.1.0   
+    image: elasticsearch:7.9.0-oss
     container_name: elasticsearch
     privileged: true
     network_mode: host
@@ -58,26 +58,26 @@ services:
            max-size: "10m"
            max-file: "2"
 
-#  kibana:
-#    image: docker.elastic.co/kibana/kibana-oss:6.1.0
-#    container_name: kibana
-#    privileged: true
-#    network_mode: host
-#    volumes:
-#      - ./conf/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
-#    logging:
-#        driver: "json-file"
-#        options:
-#           max-size: "10m"
-#           max-file: "2"
-#    depends_on:
-#      - elasticsearch
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:7.9.0
+    container_name: kibana
+    privileged: true
+    network_mode: host
+    volumes:
+      - ./conf/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    logging:
+        driver: "json-file"
+        options:
+           max-size: "10m"
+           max-file: "2"
+    depends_on:
+      - elasticsearch
 
 
   logstash:
     build: 
       context: dockerfile/logstash      
-    image: logstash:6.1.0
+    image: logstash:7.9.0-oss
     container_name: logstash
     privileged: true
     network_mode: host

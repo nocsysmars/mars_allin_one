@@ -1,6 +1,6 @@
 # https://github.com/elastic/elasticsearch-docker
-FROM docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.0
+FROM docker.elastic.co/elasticsearch/elasticsearch-oss:7.9.0-amd64
 
 # Add your elasticsearch plugins setup here
 # Example: RUN elasticsearch-plugin install analysis-icu
-RUN elasticsearch-plugin install org.codelibs:elasticsearch-dataformat:6.1.0
+RUN echo y | elasticsearch-plugin install org.codelibs:elasticsearch-dataformat:7.8.0
