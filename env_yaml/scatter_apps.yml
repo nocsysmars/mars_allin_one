@@ -2,6 +2,7 @@ version: '2'
 services:
   mars:
     environment:
+      - "ONOS_TOPOLOGY=scatter"
       - "ONOS_APPS=drivers,proxyarp,restsb,snmp,linkdiscovery\
 ,com.nocsys.drivers.nocsys.rest\
 ,com.nocsys.drivers.nocsys.snmp\
