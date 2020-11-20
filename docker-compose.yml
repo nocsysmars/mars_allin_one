@@ -21,6 +21,7 @@ services:
     container_name: nginx
     volumes:
         - ./conf/nginx/:/etc/nginx/
+        - ./conf/tftpserver:/etc/xinetd.d
         - ./swi:/opt/
         - ./download:/opt/download
         - ./public:/opt/public
@@ -35,7 +36,8 @@ services:
 
   elasticsearch:
     build:
-        context: dockerfile/elasticsearch 
+        context: dockerfile/elasticsearch
+    image: elasticsearch:6.1.0   
     container_name: elasticsearch
     privileged: true
     network_mode: host
@@ -75,6 +77,7 @@ services:
   logstash:
     build: 
       context: dockerfile/logstash      
+    image: logstash:6.1.0
     container_name: logstash
     privileged: true
     network_mode: host
@@ -100,11 +103,14 @@ services:
     mem_limit: 16g
     environment:
       - "ONOS_IP=HOST_IP_TO_ONOS_IP"
+      - "ONOS_TOPOLOGY=clos"
+      - "JAVA_OPTS=-Xms16G -Xmx16G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
 #      - "KARAF_DEBUG=true"      
 #This APPS for CLOS tenant 
 #to use different ONOS_APPS env, please ref README
       - "ONOS_APPS=drivers,openflow,proxyarp,restsb,snmp,linkdiscovery\
 ,com.nocsys.alert\
+,com.nocsys.acl\
 ,com.nocsys.analyzer\
 ,com.nocsys.defaultcfg\
 ,com.nocsys.dhcprelay\
@@ -140,9 +146,11 @@ services:
       - ./conf/mars/mars_collectd.conf:/etc/collectd/collectd.conf
       - ./download:/root/onos/download
       - ./download/config/startup_netcfg.cfg:/root/onos/config/network-cfg.json
+      - ./swi:/opt
       - /etc/localtime:/etc/localtime
-    depends_on:
-      - elasticsearch
+      - /etc/timezone:/etc/timezone
+    #depends_on:
+    #  - elasticsearch
     logging:
         driver: "json-file"
         options:
