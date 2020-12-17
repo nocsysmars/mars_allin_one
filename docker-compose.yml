@@ -58,20 +58,20 @@ services:
            max-size: "10m"
            max-file: "2"
 
-  #kibana:
-  #  image: docker.elastic.co/kibana/kibana-oss:7.9.0
-  #  container_name: kibana
-  #  privileged: true
-  #  network_mode: host
-  #  volumes:
-  #    - ./conf/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
-  #  logging:
-  #      driver: "json-file"
-  #      options:
-  #         max-size: "10m"
-  #         max-file: "2"
-  #  depends_on:
-  #    - elasticsearch
+#  kibana:
+#    image: docker.elastic.co/kibana/kibana-oss:7.9.0
+#    container_name: kibana
+#    privileged: true
+#    network_mode: host
+#    volumes:
+#      - ./conf/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+#    logging:
+#        driver: "json-file"
+#        options:
+#           max-size: "10m"
+#           max-file: "2"
+#    depends_on:
+#      - elasticsearch
 
 
   logstash:
