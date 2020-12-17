@@ -37,7 +37,7 @@ services:
   elasticsearch:
     build:
         context: dockerfile/elasticsearch
-    image: elasticsearch:6.1.0   
+    image: elasticsearch:7.9.0-oss
     container_name: elasticsearch
     privileged: true
     network_mode: host
@@ -59,7 +59,7 @@ services:
            max-file: "2"
 
 #  kibana:
-#    image: docker.elastic.co/kibana/kibana-oss:6.1.0
+#    image: docker.elastic.co/kibana/kibana-oss:7.9.0
 #    container_name: kibana
 #    privileged: true
 #    network_mode: host
@@ -77,7 +77,7 @@ services:
   logstash:
     build: 
       context: dockerfile/logstash      
-    image: logstash:6.1.0
+    image: logstash:7.5.2-oss
     container_name: logstash
     privileged: true
     network_mode: host
