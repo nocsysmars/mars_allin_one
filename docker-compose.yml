@@ -77,7 +77,7 @@ services:
   logstash:
     build: 
       context: dockerfile/logstash      
-    image: logstash:7.9.0-oss
+    image: logstash:7.5.2-oss
     container_name: logstash
     privileged: true
     network_mode: host
