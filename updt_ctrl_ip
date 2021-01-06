@@ -17,6 +17,8 @@ if [ $# -eq 1 ]; then
  echo $1
 fi
 
+host_name=$(hostname -f)
+
 if [ "$ACTION" = "new" ]; then
  if [[ $(cat /etc/os-release|grep ^NAME) == *"CentOS"* ]]; then
   ifacename=$(ip addr show | awk '/'$1'/ {print $NF}')
@@ -39,6 +41,7 @@ echo "replace conf/mars/mars_collectd.conf"
 sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' conf/mars/mars_collectd.conf
 echo "replace conf/elasticsearch/elasticsearch.yml"
 sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' conf/elasticsearch/elasticsearch.yml
+sed -i 's/HOST_NAME/'"$host_name"'/g'  conf/elasticsearch/elasticsearch.yml
 echo "replace docker-compose.yml"
 sed -i 's/HOST_IP_TO_ONOS_IP/'"$1"'/g' docker-compose.yml
 echo "replace conf/kibana/kibana.yml"

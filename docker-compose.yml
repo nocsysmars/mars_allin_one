@@ -37,7 +37,7 @@ services:
   elasticsearch:
     build:
         context: dockerfile/elasticsearch
-    image: elasticsearch:6.1.0   
+    image: elasticsearch:7.9.0-oss
     container_name: elasticsearch
     privileged: true
     network_mode: host
@@ -59,7 +59,7 @@ services:
            max-file: "2"
 
 #  kibana:
-#    image: docker.elastic.co/kibana/kibana-oss:6.1.0
+#    image: docker.elastic.co/kibana/kibana-oss:7.9.0
 #    container_name: kibana
 #    privileged: true
 #    network_mode: host
@@ -77,7 +77,7 @@ services:
   logstash:
     build: 
       context: dockerfile/logstash      
-    image: logstash:6.1.0
+    image: logstash:7.5.2-oss
     container_name: logstash
     privileged: true
     network_mode: host
@@ -100,11 +100,11 @@ services:
     container_name: mars
     network_mode: host
     privileged: true
-    mem_limit: 16g
+    mem_limit: 4g
     environment:
       - "ONOS_IP=HOST_IP_TO_ONOS_IP"
       - "ONOS_TOPOLOGY=clos"
-      - "JAVA_OPTS=-Xms16G -Xmx16G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
+      - "JAVA_OPTS=-Xms4G -Xmx4G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
 #      - "KARAF_DEBUG=true"      
 #This APPS for CLOS tenant 
 #to use different ONOS_APPS env, please ref README
