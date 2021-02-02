@@ -156,3 +156,21 @@ services:
         options:
            max-size: "10m"
            max-file: "2"
+
+
+
+#  radius:
+#        image: freeradius/freeradius-server:3.0.21
+#        container_name: marsradius
+#        network_mode: host
+#        privileged: true
+#        mem_limit: 1g
+#        volumes:
+#                - ./conf/radius/authorize:/etc/raddb/mods-config/files/authorize
+#                - ./conf/radius/clients.conf:/etc/raddb/clients.conf
+#        logging:
+#               driver: "json-file"
+#               options:
+#                       max-size: "1k"
+#                       max-file: "2"
+
