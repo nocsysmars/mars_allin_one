@@ -31,5 +31,5 @@ services:
 ,com.nocsys.dhcpsnooping\
 ,com.nocsys.pppoeia\
 ,com.nocsys.poe\
-,com.nocsys.qospolicy
+,com.nocsys.qospolicy\
 ,com.nocsys.acl"
