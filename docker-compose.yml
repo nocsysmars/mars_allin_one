@@ -87,6 +87,7 @@ services:
       - ./conf/logstash/types.db:/usr/share/logstash/types.db:ro
     environment:
       LS_JAVA_OPTS: "-Xmx2g -Xms2g"
+      ES_HOSTS: "127.0.0.1:9200"
     depends_on:
       - elasticsearch
     logging:
