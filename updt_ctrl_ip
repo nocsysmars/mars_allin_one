@@ -2,20 +2,6 @@
 
 echo "upctl {old_ip} {new_ip}"
 echo "upctl {new_ip}"
-echo "upctl -e {new_ip} # -e means change elasticSearch host IP address"
-
-
-while getopts 'e:' OPT; do
-    case $OPT in
-        e) ES_ARG="$OPTARG";;
-    esac
-done
-
-if  [[ ! -z $ES_ARG ]] ; then
-  echo "set global variable ES_HOSTS_IP to $ES_ARG"
-  sed -i -e '/ES_HOSTS_IP=/s/=.*/='$ES_ARG':9200/' .env
-  exit
-fi
 
 if [ $# -eq 0 ] || [ $# -gt 2 ]; then
  echo "Please only input old and new IP or new IP"
