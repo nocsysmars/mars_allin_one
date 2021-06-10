@@ -1,8 +1,8 @@
 #!/bin/bash
-# company=prod
-# if [[ $1 == "ares" ]]; then
-#   company=$1
-# fi
+company=mars_prod
+if [[ $1 == "ares" ]]; then
+  company=ares_prod
+fi
 
 #BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 echo "==> 1. Download mars web code."
@@ -14,7 +14,7 @@ fi
 echo ''
 echo "==> 2. Start to build mars web code."
 cd mars_web_plus
-docker run --rm -v "$PWD":/home/node/web  -w /home/node/web node:12 sh -c "npm install -g @angular/cli && npm install && ng build --prod --output-path=public"
+docker run --rm -v "$PWD":/home/node/web  -w /home/node/web node:12 sh -c "npm install -g @angular/cli && npm install && npm run build:$company"
 if [ $? -ne 0 ]; then
  echo '==== Build Fail ===='
  exit $?
