@@ -1,8 +1,8 @@
 #!/bin/bash
 company=mars_prod
-if [[ $1 == "ares" ]]; then
+#if [[ $1 == "ares" ]]; then
   company=ares_prod
-fi
+#fi
 
 #BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 echo "==> 1. Download mars web code."
