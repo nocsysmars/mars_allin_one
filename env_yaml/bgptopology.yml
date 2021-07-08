@@ -2,7 +2,7 @@ version: '2'
 services:
   mars:
     environment:
-      - "ONOS_TOPOLOGY=clos"
+      - "ONOS_TOPOLOGY=bgptopology"
       - "ONOS_APPS=drivers\
 ,com.nocsys.drivers.nocsys.gnmi\
 ,com.nocsys.drivers.nocsys.rest\
@@ -33,9 +33,6 @@ services:
 ,com.nocsys.sflow\
 ,com.nocsys.storm-control\
 ,com.nocsys.switchmgmt\
-,com.nocsys.egp\
-,com.nocsys.tenant\
-,com.nocsys.tenantlogicalrouter\
-,com.nocsys.topology\
+,com.nocsys.bgptopology\
 ,com.nocsys.acl\
 ,com.nocsys.webssh"
