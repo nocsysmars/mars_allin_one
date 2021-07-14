@@ -1,0 +1,29 @@
+version: '2'
+services:
+  mars:
+    environment:
+      - "ONOS_TOPOLOGY=none"
+      - "ONOS_APPS=drivers\
+,com.nocsys.drivers.nocsys.gnmi\
+,com.nocsys.drivers.nocsys.rest\
+,com.nocsys.drivers.nocsys.snmp\
+,restsb\
+,snmp\
+,org.onosproject.netconf\
+,org.onosproject.drivers.netconf\
+,org.onosproject.drivers.h3c.netconf\
+,linkdiscovery\
+,com.nocsys.provider.switchpolling\
+,com.nocsys.eventclient\
+,com.nocsys.useraccount\
+,com.nocsys.defaultcfg\
+,com.nocsys.alert\
+,com.nocsys.analyzer\
+,com.nocsys.utility\
+,com.nocsys.healthycheck\
+,com.nocsys.dhcpserver\
+,com.nocsys.dhcpv6server\
+,com.nocsys.endpoint\
+,com.nocsys.qos\
+,com.nocsys.switchmgmt\
+,com.nocsys.webssh"
