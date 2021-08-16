@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 services: 
   #keepalive:
@@ -87,6 +87,7 @@ services:
       - ./conf/logstash/types.db:/usr/share/logstash/types.db:ro
     environment:
       LS_JAVA_OPTS: "-Xmx2g -Xms2g"
+      ES_HOSTS: "${ES_HOSTS_IP:-127.0.0.1:9200}"
     depends_on:
       - elasticsearch
     logging:
@@ -104,43 +105,47 @@ services:
     environment:
       - "ONOS_IP=HOST_IP_TO_ONOS_IP"
       - "ONOS_TOPOLOGY=clos"
+      - "ES_HOSTS=${ES_HOSTS_IP:-127.0.0.1:9200}"
       - "JAVA_OPTS=-Xms4G -Xmx4G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
 #      - "KARAF_DEBUG=true"      
 #This APPS for CLOS tenant 
 #to use different ONOS_APPS env, please ref README
-      - "ONOS_APPS=drivers,openflow,proxyarp,restsb,snmp,linkdiscovery\
-,com.nocsys.alert\
-,com.nocsys.acl\
-,com.nocsys.analyzer\
-,com.nocsys.defaultcfg\
-,com.nocsys.dhcprelay\
-,com.nocsys.dhcpserver\
-,com.nocsys.dhcpv6server\
+      - "ONOS_APPS=drivers\
 ,com.nocsys.drivers.nocsys.gnmi\
 ,com.nocsys.drivers.nocsys.rest\
 ,com.nocsys.drivers.nocsys.snmp\
+,proxyarp\
+,restsb\
+,snmp\
 ,org.onosproject.netconf\
 ,org.onosproject.drivers.netconf\
 ,org.onosproject.drivers.h3c.netconf\
-,com.nocsys.egp\
-,com.nocsys.endpoint\
+,linkdiscovery\
+,com.nocsys.provider.switchpolling\
 ,com.nocsys.eventclient\
+,com.nocsys.useraccount\
+,com.nocsys.defaultcfg\
+,com.nocsys.alert\
+,com.nocsys.analyzer\
+,com.nocsys.utility\
 ,com.nocsys.healthycheck\
+,com.nocsys.dhcprelay\
+,com.nocsys.dhcpserver\
+,com.nocsys.dhcpv6server\
 ,com.nocsys.logicalport\
+,com.nocsys.endpoint\
 ,com.nocsys.monitor\
 ,com.nocsys.ntpserver\
-,com.nocsys.provider.switchpolling\
 ,com.nocsys.qos\
 ,com.nocsys.sflow\
 ,com.nocsys.storm-control\
 ,com.nocsys.switchmgmt\
+,com.nocsys.egp\
 ,com.nocsys.tenant\
 ,com.nocsys.tenantlogicalrouter\
 ,com.nocsys.topology\
-,com.nocsys.useraccount\
-,com.nocsys.utility\
-,com.nocsys.webssh"  
-
+,com.nocsys.acl\
+,com.nocsys.webssh"
     volumes:
       - ./conf/mars/modules:/etc/collectd/modules
       - ./conf/mars/mars_collectd.conf:/etc/collectd/collectd.conf

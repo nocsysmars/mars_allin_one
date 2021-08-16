@@ -102,6 +102,7 @@ RUN mkdir -p /tmp
 COPY ./filebeat-6.4.1-amd64.deb /tmp
 RUN dpkg -i /tmp/filebeat-6.4.1-amd64.deb
 COPY ./filebeat.yml /etc/filebeat
+RUN chmod go-w /etc/filebeat/filebeat.yml
 RUN rm -rf /tmp/filebeat-6.4.1-amd64.deb
 COPY ./run.sh /root/
 
