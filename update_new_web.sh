@@ -6,6 +6,7 @@ company=mars_prod
 
 #BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 echo "==> 1. Download mars web code."
+rm -rf mars_web_plus
 git clone --branch main https://github.com/TeamNocsys/mars_web_plus
 if [ $? -ne 0 ]; then
  echo '==== Download Fail ===='
