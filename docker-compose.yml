@@ -16,6 +16,7 @@ services:
 
   nginx:
     image: nginx:1.14.0
+    restart: always
     build:
         context: dockerfile/nginx
     container_name: nginx
@@ -85,6 +86,7 @@ services:
       - ./conf/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./conf/logstash/pipeline:/usr/share/logstash/pipeline:ro
       - ./conf/logstash/types.db:/usr/share/logstash/types.db:ro
+      - ./conf/logstash/default-template.json:/usr/share/logstash/default-template.json:ro
     environment:
       LS_JAVA_OPTS: "-Xmx2g -Xms2g"
       ES_HOSTS: "${ES_HOSTS_IP:-127.0.0.1:9200}"
@@ -98,6 +100,7 @@ services:
 
   mars:
     image: mars:master
+    restart: always
     container_name: mars
     network_mode: host
     privileged: true
