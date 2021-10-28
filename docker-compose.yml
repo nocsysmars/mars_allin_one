@@ -182,3 +182,15 @@ services:
 #                       max-size: "1k"
 #                       max-file: "2"
 
+  grafana:
+       image: grafana/grafana-enterprise
+       container_name: grafana
+       network_mode: host
+       privileged: true
+       mem_limit: 1g
+       logging:
+           driver: "json-file"
+           options:
+              max-size: "10m"
+              max-file: "2"
+
