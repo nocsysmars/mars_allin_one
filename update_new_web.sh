@@ -11,6 +11,7 @@ case $BRANCH in
              esac
 	     ;;
      sia)
+	    read -p 'brand name (sia; crsc)' BRAND
 	    case $BRAND in
 		    sia)  BRAND="sia_prod" ;;
 		    crsc) BRAND="crsc_prod" ;;
