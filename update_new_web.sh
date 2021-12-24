@@ -1,16 +1,16 @@
 #!/bin/bash
 
-read -p 'branch (master; sia; vcmy): ' BRANCH
+read -p 'branch (main; sia; vcmy): ' BRANCH
 
 case $BRANCH in
-     master) read -p 'brand name (mars; ares): ' BRAND
-	     case $BRAND in
+     main)  read -p 'brand name (mars; ares): ' BRAND
+	    case $BRAND in
 		     mars) BRAND="mars_prod" ;;
                      ares) BRAND="ares_prod" ;;
 		     *) echo "Wrong brand name, only mars or ares"; exit;;
-             esac
-	     ;;
-     sia)
+            esac
+	    ;;
+     sia)   read -p 'brand name (sia; crsc)' BRAND
 	    case $BRAND in
 		    sia)  BRAND="sia_prod" ;;
 		    crsc) BRAND="crsc_prod" ;;
