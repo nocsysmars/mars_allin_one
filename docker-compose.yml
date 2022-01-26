@@ -107,7 +107,10 @@ services:
     mem_limit: 4g
     environment:
       - "ONOS_IP=HOST_IP_TO_ONOS_IP"
+      #clos,staticfabric-fr,staticfabric,bgptopology
       - "ONOS_TOPOLOGY=clos"
+      #unnumbered, numbered
+      - "FABRIC_ADDRESS=unnumbered"
       - "ES_HOSTS=${ES_HOSTS_IP:-127.0.0.1:9200}"
       - "JAVA_OPTS=-Xms4G -Xmx4G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
 #      - "KARAF_DEBUG=true"      
