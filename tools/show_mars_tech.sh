@@ -20,7 +20,7 @@ fi
 
 curl -i  -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/utility/v1/version 1> ctrl_version.log
 curl -i  -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/v1/system/systemInfo 1> ctrl_hostinfo.log
-#curl -i  -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/build.json 1> web_version.log
+curl -i  -H "Cookie: marsGSessionId=$token" -XGET -k https://$1/build.json 1> web_version.log
 curl -i  -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/utility/logs/v1/controller/files/karaf_error.log 1> karaf_error.log
 curl -i  -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/utility/logs/v1/controller/files/karaf.log 1> karaf.log
 for i in $(seq 1 5);
