@@ -107,8 +107,6 @@ services:
       - "ONOS_APPS=drivers,openflow,fwd,proxyarp,snmp,linkdiscovery\
         ,com.nocsys.alert\
         ,com.nocsys.analyzer\
-        ,com.nocsys.webssh\
-        ,com.nocsys.loopdetect\
         ,com.nocsys.monitor\
         ,com.nocsys.calcpath\
         ,com.nocsys.defaultcfg\
@@ -123,7 +121,6 @@ services:
         ,com.nocsys.ntpserver\
         ,com.nocsys.provider.switchpolling\
         ,com.nocsys.qos\
-        ,com.nocsys.storm-control\
         ,com.nocsys.switchmgmt\
         ,com.nocsys.useraccount\
         ,com.nocsys.utility\
