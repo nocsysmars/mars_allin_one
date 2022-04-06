@@ -42,3 +42,6 @@ curl  -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/v1/devices 1>
 
 #netcfg
 curl  -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/v1/network/configuration 1> run_netcfg.cfg
+
+#apps
+curl  -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/v1/applications 1> applications
