@@ -34,3 +34,8 @@ off_utc=$(($2+8))
 timestamp=$(date -d "$off_utc hours ago" +%Y-%m-%dT%H:%M:%S.0000Z)
 echo $timestamp
 curl -i  -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/utility/logs/v1/controller?start=$timestamp\&number=2000\&match=\&source=/root/onos/apache-karaf-3.0.8/data/log/karaf.log 1> karaf_from_es.log
+
+
+#get devices
+curl  -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/v1/devices/config 1> devices.log
+curl  -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/v1/devices 1>> devices.log
