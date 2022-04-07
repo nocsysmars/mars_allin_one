@@ -5,7 +5,6 @@ if [ $# -ne 2 ];
     exit
 fi
 
-echo $1
 
 docker logs mars &> docker_logs
 
