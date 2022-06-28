@@ -35,4 +35,5 @@ services:
 ,com.nocsys.switchmgmt\
 ,com.nocsys.staticfabric\
 ,com.nocsys.acl\
+,com.nocsys.websocket\
 ,com.nocsys.webssh"

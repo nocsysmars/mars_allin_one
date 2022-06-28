@@ -40,5 +40,6 @@ services:
 ,com.nocsys.poe\
 ,com.nocsys.qospolicy\
 ,com.nocsys.acl\
+,com.nocsys.websocket\
 ,com.nocsys.webssh"
 
