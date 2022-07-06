@@ -14,7 +14,7 @@ discovery.zen.minimum_master_nodes: 1
 #discovery.zen.ping.unicast.hosts: ["192.168.3.25", "192.168.3.64"]
 
 #disable to become read only when disk full
-cluster.routing.allocation.disk.threshold_enabled: false
+cluster.routing.allocation.disk.threshold_enabled: true
 
 ## Use single node discovery in order to disable production mode and avoid bootstrap checks
 ## see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
