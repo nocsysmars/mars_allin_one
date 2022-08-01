@@ -107,7 +107,11 @@ services:
     mem_limit: 4g
     environment:
       - "ONOS_IP=HOST_IP_TO_ONOS_IP"
+      #clos,staticfabric-fr,staticfabric,bgptopology
       - "ONOS_TOPOLOGY=clos"
+      #unnumbered, numbered
+      - "FABRIC_ADDRESS=unnumbered"
+#      - "ES_DOC=_doc"
       - "ES_HOSTS=${ES_HOSTS_IP:-127.0.0.1:9200}"
       - "JAVA_OPTS=-Xms4G -Xmx4G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
 #      - "KARAF_DEBUG=true"      
@@ -148,6 +152,7 @@ services:
 ,com.nocsys.tenantlogicalrouter\
 ,com.nocsys.topology\
 ,com.nocsys.acl\
+,com.nocsys.websocket\
 ,com.nocsys.webssh"
     volumes:
       - ./conf/mars/modules:/etc/collectd/modules
@@ -182,3 +187,41 @@ services:
 #                       max-size: "1k"
 #                       max-file: "2"
 
+#  grafana:
+#       image: grafana/grafana-enterprise
+#       container_name: grafana
+#       network_mode: host
+#       privileged: true
+#       mem_limit: 1g
+#       logging:
+#           driver: "json-file"
+#           options:
+#              max-size: "10m"
+#              max-file: "2"
+
+
+#  prometheus:
+#    image: prom/prometheus
+#    container_name: prometheus
+#    network_mode: host
+#    privileged: true
+#    mem_limit: 1g
+#    volumes:
+#       - ./conf/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml 
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: "1m"
+#        max-file: "2"
+
+#  prometheus-node-exporter:
+#    image: prom/node-exporter
+#    container_name: node-exporter
+#    network_mode: host
+#    privileged: true
+#    mem_limit: 1g
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: "1m"
+#        max-file: "2"

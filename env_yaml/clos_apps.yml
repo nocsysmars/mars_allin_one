@@ -38,4 +38,5 @@ services:
 ,com.nocsys.tenantlogicalrouter\
 ,com.nocsys.topology\
 ,com.nocsys.acl\
+,com.nocsys.websocket\
 ,com.nocsys.webssh"

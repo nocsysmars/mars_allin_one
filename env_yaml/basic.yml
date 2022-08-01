@@ -26,4 +26,5 @@ services:
 ,com.nocsys.endpoint\
 ,com.nocsys.qos\
 ,com.nocsys.switchmgmt\
+,com.nocsys.websocket\
 ,com.nocsys.webssh"

@@ -1,12 +1,33 @@
 #!/bin/bash
-company=mars_prod
-#if [[ $1 == "ares" ]]; then
-  company=ares_prod
-#fi
 
-#BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+read -p 'branch (main; sia; vcmy): ' BRANCH
+
+case $BRANCH in
+     main) read -p 'brand name (mars; ares): ' BRAND
+	     case $BRAND in
+		     mars) BRAND="mars_prod" ;;
+                     ares) BRAND="ares_prod" ;;
+		     *) echo "Wrong brand name, only mars or ares"; exit;;
+             esac
+	     ;;
+     sia)
+	    read -p 'brand name (sia; crsc): ' BRAND
+	    case $BRAND in
+		    sia)  BRAND="sia_prod" ;;
+		    crsc) BRAND="crsc_prod" ;;
+		    *) echo "Wrong brand name only sia, crsc";;
+	    esac
+	     ;;
+     vcmy) BRAND="vcmy_prod"
+	     ;;
+     *)
+	echo "Wrong Branch Name"
+	exit;;
+esac
+
 echo "==> 1. Download mars web code."
-git clone --branch main https://github.com/TeamNocsys/mars_web_plus
+rm -rf mars_web_plus
+git clone --depth=1 --branch $BRANCH https://github.com/TeamNocsys/mars_web_plus
 if [ $? -ne 0 ]; then
  echo '==== Download Fail ===='
  exit $?
@@ -14,7 +35,7 @@ fi
 echo ''
 echo "==> 2. Start to build mars web code."
 cd mars_web_plus
-docker run --rm -v "$PWD":/home/node/web  -w /home/node/web node:12 sh -c "npm install -g @angular/cli && npm install && npm run build:$company"
+docker run --rm -v "$PWD":/home/node/web  -w /home/node/web node:12 sh -c "npm install -g @angular/cli && npm install && npm run build:$BRAND"
 if [ $? -ne 0 ]; then
  echo '==== Build Fail ===='
  exit $?

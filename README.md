@@ -7,7 +7,7 @@ docker-compose  operation:
 For use different mars apps environment variable, you can use multi yaml file
 docker-compose -f docker-compose.yml -f env_yaml/sia_app.yml up -d
 
-NOTE: ElasticSearch need run ./setup_elasticsearch on host.
+NOTE: ElasticSearch need run ./tools/setup_elasticsearch on host.
 
 NOTE: elasticsearch only bind localhost, if you want to access from Internet, you shall change network.bind_host="0.0.0.0"
 
