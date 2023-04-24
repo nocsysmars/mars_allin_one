@@ -14,6 +14,7 @@ RUN apt-get update && \
     openssh-client \
     -y  || true
 
+#Because there is dependency problem when install collectd, here I just reinstall again
 RUN apt-get reinstall collectd -y &&\
     curl -sSO https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.4.1-amd64.deb && \
     dpkg -i filebeat-6.4.1-amd64.deb && \
