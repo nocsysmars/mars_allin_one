@@ -1,18 +1,22 @@
 # Pre-install packages for mars
-FROM openjdk:8-jre-slim
+FROM openjdk:8-jre-slim-bullseye
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
     apt-get install \
     curl \
     collectd \
-    iproute \
-    python-configparser \
-    python-pycurl \
-    python-requests \
-    scapy \
-    -y && \
+    iproute2 \
+    python3-metaconfig \
+    python3-pycurl \
+    python3-requests \
+    python3-scapy \
+    openssh-client \
+    -y  || true
+
+RUN apt-get reinstall collectd -y &&\
     curl -sSO https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.4.1-amd64.deb && \
     dpkg -i filebeat-6.4.1-amd64.deb && \
     unlink filebeat-6.4.1-amd64.deb && \
+    apt-get clean && apt-get autoclean && \
     rm -rf /var/lib/apt/lists/*
