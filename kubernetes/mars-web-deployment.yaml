@@ -20,6 +20,7 @@ spec:
       - name: nginx
         image: nginx:1.14.0
         imagePullPolicy: IfNotPresent
+        command: ["/etc/nginx/update_mars_ip.sh"]
         ports:
         - containerPort: 443
         - containerPort: 69
