@@ -18,7 +18,7 @@ spec:
         node-role.kubernetes.io/master: ""
       containers:
       - name: mars
-        image: mars:latest
+        image: 'nocsysmars/mars:master'
         imagePullPolicy: IfNotPresent
         resources:
           limits:

@@ -19,7 +19,7 @@ spec:
         node-role.kubernetes.io/master: ""
       containers:
       - name: elasticsearch
-        image: elasticsearch:7.9.0-oss
+        image: 'nocsysmars/elasticsearch:7.9.0-oss'
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9200

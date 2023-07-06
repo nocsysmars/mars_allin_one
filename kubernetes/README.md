@@ -3,6 +3,7 @@
 cd mars_allin_one
 
 edit kubernetes/mars-pvc.yaml, make sure PersistentVolume at you master node , in my envirement, this value is nodea, change it to your master node name.
+edit kubernetes/mars-pvc.yaml make sure spec.local.path is availiable to store data.
 
 run the follow command:
 kubectl apply -f kubernetes/mars-pvc.yaml
