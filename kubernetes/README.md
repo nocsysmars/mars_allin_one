@@ -13,6 +13,7 @@ after download these images, you should **check these image names be consist wit
 cd mars_allin_one directory
 
 edit kubernetes/mars-pvc.yaml, make sure PersistentVolume at you master node , in my envirement, this value is nodea, change it to your master node name.
+edit kubernetes/mars-pvc.yaml make sure spec.local.path is availiable to store data.
 
 The volume **hostPath.path only support absolute path,not relative path**, you should change mars-deployment.yaml, mars-logstash-deployment.yaml, mars-web-deployment.yaml these file hostPath.path value  to your mars_allin_one absolute path. or you will see "MountVolume.SetUp failed" errors
 

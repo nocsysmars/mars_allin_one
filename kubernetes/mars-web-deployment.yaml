@@ -18,7 +18,7 @@ spec:
         node-role.kubernetes.io/master: ""
       containers:
       - name: nginx
-        image: nginx:1.14.0
+        image: 'nocsysmars/nginx:1.14.0'
         imagePullPolicy: IfNotPresent
         command: ["/etc/nginx/update_mars_ip.sh"]
         ports:
