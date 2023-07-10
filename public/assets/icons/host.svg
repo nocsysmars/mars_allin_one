@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="color-theme" id="host-" data-name="Layer 1" width="38" height="38" viewBox="-1 -1 38 38" y="1558">
+  <defs>
+    <style>.color-theme{fill:#ffffff}.path-size{fill:none}</style>
+  </defs>
+  <path d="M26.65 2H9.35A1.33 1.33 0 008 3.31V34h20V3.31A1.33 1.33 0 0026.65 2zM26 32H10V4h16z"/>
+  <path d="M12 6h12v2H12zM12 10h12v2H12zM18 26a1 1 0 11-1 1 1 1 0 011-1m0-2a3 3 0 103 3 3 3 0 00-3-3z"/>
+  <path class="path-size" d="M0 0h36v36H0z"/>
+</svg>

@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+# namespace: nocsys-mars
+  name: mars-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mars-nginx
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mars-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nocsysmars/k8s-nginx:1.14.0
+        imagePullPolicy: IfNotPresent
+        command: ["/etc/nginx/update_mars_ip.sh"]
+        ports:
+        - containerPort: 443
+        - containerPort: 69
+        - containerPort: 80
+        volumeMounts:
+        - name: host-time
+          readOnly: true
+          mountPath: /etc/localtime
+      volumes:
+      - name: host-time
+        hostPath:
+          path: /etc/localtime
+          type: File 

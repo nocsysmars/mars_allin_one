@@ -1,0 +1,131 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+# namespace: nocsys-mars
+  name: mars
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mars
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mars
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
+      containers:
+      - name: mars
+        image: 'nocsysmars/mars:master'
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "4Gi"
+        env:
+        - name: ONOS_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: ONOS_TOPOLOGY
+          value: "clos"
+        - name: FABRIC_ADDRESS
+          value: "unnumbered"
+        - name: ES_DOC
+          value: "_doc"
+        - name: KARAF_DEBUG
+          value: "true"
+        # - name: ES_HOSTS
+        #   value: "127.0.0.1:9200"
+        - name: ES_HOSTS
+          value: "elasticsearch.default.svc.cluster.local:9200"  
+        - name: JAVA_OPTS
+          value: "-Xms4G -Xmx4G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
+        - name: ONOS_APPS
+          value: >
+            drivers
+            com.nocsys.drivers.nocsys.gnmi
+            com.nocsys.drivers.nocsys.rest
+            com.nocsys.drivers.nocsys.snmp
+            proxyarp
+            restsb
+            snmp
+            org.onosproject.netconf
+            org.onosproject.drivers.netconf
+            org.onosproject.drivers.h3c.netconf
+            linkdiscovery
+            com.nocsys.provider.switchpolling
+            com.nocsys.eventclient
+            com.nocsys.useraccount
+            com.nocsys.defaultcfg
+            com.nocsys.alert
+            com.nocsys.analyzer
+            com.nocsys.utility
+            com.nocsys.healthycheck
+            com.nocsys.dhcprelay
+            com.nocsys.dhcpserver
+            com.nocsys.dhcpv6server
+            com.nocsys.logicalport
+            com.nocsys.endpoint
+            com.nocsys.monitor
+            com.nocsys.ntpserver
+            com.nocsys.qos
+            com.nocsys.sflow
+            com.nocsys.storm-control
+            com.nocsys.switchmgmt
+            com.nocsys.egp
+            com.nocsys.tenant
+            com.nocsys.tenantlogicalrouter
+            com.nocsys.topology
+            com.nocsys.acl
+            com.nocsys.websocket
+            com.nocsys.webssh
+        volumeMounts:
+        - name: collectd-modules
+          mountPath: /etc/collectd/modules
+        - name: collectd
+          readOnly: true
+          mountPath: /etc/collectd/collectd.conf
+        - name: swi
+          mountPath: /opt
+        - name: download
+          mountPath: /opt/download
+        - name: startup-cfg
+          mountPath: /root/onos/config/network-cfg.json
+          readOnly: true
+        - name: host-time
+          readOnly: true
+          mountPath: /etc/localtime
+        - name: timezone
+          readOnly: true
+          mountPath: /etc/timezone  
+      volumes:
+      - name: collectd-modules
+        hostPath:
+          path: /root/mars_allin_one/conf/mars/modules
+          type: Directory
+      - name: collectd
+        hostPath:
+          path: /root/mars_allin_one/conf/mars/mars_collectd.conf
+          type: File
+      - name: swi
+        hostPath:
+          path: /root/mars_allin_one/swi
+          type: Directory
+      - name: download
+        hostPath:
+          path: /root/mars_allin_one/download
+          type: Directory
+      - name: startup-cfg
+        hostPath:
+          path: /root/mars_allin_one/download/config/startup_netcfg.cfg
+          type: File
+      - name: host-time
+        hostPath:
+          path: /etc/localtime
+          type: File
+      - name: timezone
+        hostPath:
+          path: /etc/timezone
+          type: File      

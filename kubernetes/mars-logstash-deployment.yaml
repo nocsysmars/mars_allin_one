@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+# namespace: nocsys-mars
+  name: mars-logstash
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mars-logstash
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mars-logstash
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
+      containers:
+      - name: logstash
+        image: 'nocsysmars/logstash:7.5.2-oss'
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: LS_JAVA_OPTS
+          value: "-Xmx2g -Xms2g"
+        - name: ES_HOSTS
+          value: "elasticsearch.default.svc.cluster.local:9200"
+        volumeMounts:
+        - name: logstash-conf
+          readOnly: true
+          mountPath: /usr/share/logstash/config/logstash.yml
+        - name: logstash-pipeline
+          readOnly: true
+          mountPath: /usr/share/logstash/pipeline
+        - name: logstash-types
+          readOnly: true
+          mountPath: /usr/share/logstash/types.db
+        - name: logstash-template
+          readOnly: true
+          mountPath: /usr/share/logstash/default-template.json
+      volumes:
+      - name: logstash-pipeline
+        hostPath:
+          path: /root/mars_allin_one/conf/logstash/pipeline
+          type: Directory
+      - name: logstash-conf
+        hostPath:
+          path: /root/mars_allin_one/conf/logstash/logstash.yml
+          type: File
+      - name: logstash-types
+        hostPath:
+          path: /root/mars_allin_one/conf/logstash/types.db
+          type: File
+      - name: logstash-template
+        hostPath:
+          path: /root/mars_allin_one/conf/logstash/default-template.json
+          type: File

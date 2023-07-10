@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="color-theme" id="datacenter" data-name="Layer 1" width="38" height="38" viewBox="-1 -1 38 38" y="2318">
+  <defs>
+    <style>.color-theme{fill:#ffffff}.path-size{fill:none}</style>
+  </defs>
+  <path class="path-size" d="M0 0h36v36H0z"/>
+  <path d="M30 8h-8v2h8v22h-8v2h10V10.08A2 2 0 0030 8zM19.88 4H6.12A2.12 2.12 0 004 6.12V34h18V6.12A2.12 2.12 0 0019.88 4zM20 32H6V6.12A.12.12 0 016.12 6h13.76a.12.12 0 01.12.12z"/>
+  <path d="M8 10h2v2H8zM12 10h2v2h-2zM16 10h2v2h-2zM8 14h2v2H8zM12 14h2v2h-2zM16 14h2v2h-2zM8 18h2v2H8zM12 18h2v2h-2zM16 18h2v2h-2zM8 22h2v2H8zM12 22h2v2h-2zM16 22h2v2h-2zM22 14h2v2h-2zM26 14h2v2h-2zM22 18h2v2h-2zM26 18h2v2h-2zM22 22h2v2h-2zM26 22h2v2h-2z"/>
+</svg>
