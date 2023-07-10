@@ -3,7 +3,7 @@
 currently, the mars k8s pods run on master node because of mount file from mars_allin_one conf directory, so just pull these images to master node is ok
 ```
 docker pull nocsysmars/mars:master
-docker pull nocsysmars/nginx:1.14.0
+docker pull nocsysmars/k8s-nginx:1.14.0
 docker pull nocsysmars/logstash:7.5.2-oss
 docker pull nocsysmars/elasticsearch:7.9.0-oss
 docker pull busybox:latest
