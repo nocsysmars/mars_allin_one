@@ -110,7 +110,6 @@ COPY dockerfile/nginx/filebeat.yml /etc/filebeat
 RUN chmod go-w /etc/filebeat/filebeat.yml
 RUN rm -rf /tmp/filebeat-6.4.1-amd64.deb
 COPY public/.  /opt/public/
-COPY swi/. /opt/swi/
 COPY download/. /opt/download/
 COPY conf/nginx/. /etc/nginx/
 COPY conf/tftpserver/. /etc/xinetd.d/
