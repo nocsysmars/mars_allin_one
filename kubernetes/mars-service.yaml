@@ -10,6 +10,9 @@ spec:
     app.kubernetes.io/name: mars-nginx
   ports:
     - port: 443
+      name: https
+    - port: 69
+      name: tftp
 
 ---
 apiVersion: v1
