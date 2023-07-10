@@ -14,11 +14,9 @@ spec:
       labels:
         app.kubernetes.io/name: mars-nginx
     spec:
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
       containers:
       - name: nginx
-        image: nginx:1.14.0
+        image: k8s-nginx:1.14.0
         imagePullPolicy: IfNotPresent
         command: ["/etc/nginx/update_mars_ip.sh"]
         ports:
@@ -26,40 +24,10 @@ spec:
         - containerPort: 69
         - containerPort: 80
         volumeMounts:
-        - name: nginx-conf
-          mountPath: /etc/nginx
-        - name: tftp-conf
-          mountPath: /etc/xinetd.d
-        - name: swi
-          mountPath: /opt
-        - name: download
-          mountPath: /opt/download
-        - name: public
-          mountPath: /opt/public
         - name: host-time
           readOnly: true
           mountPath: /etc/localtime
       volumes:
-      - name: nginx-conf
-        hostPath:
-          path: /root/mars_allin_one/conf/nginx
-          type: Directory
-      - name: tftp-conf
-        hostPath:
-          path: /root/mars_allin_one/conf/tftpserver
-          type: Directory
-      - name: swi
-        hostPath:
-          path: /root/mars_allin_one/swi
-          type: Directory
-      - name: download
-        hostPath:
-          path: /root/mars_allin_one/download
-          type: Directory
-      - name: public
-        hostPath:
-          path: /root/mars_allin_one/public
-          type: Directory
       - name: host-time
         hostPath:
           path: /etc/localtime
