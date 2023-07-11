@@ -47,7 +47,10 @@ spec:
         - name: discovery.zen.minimum_master_nodes
           value: "1"
         - name: ES_JAVA_OPTS
-          value: "-Xms1g -Xmx1g"
+          valueFrom:
+            configMapKeyRef:
+              name: mars-configmap
+              key: elasticsearch_env_java_ops
         - name: network.host
           value: "0.0.0.0"
       initContainers:

@@ -47,3 +47,4 @@ data:
     com.nocsys.websocket
     com.nocsys.webssh
   logstash_env_java_ops: "-Xmx2g -Xms2g"
+  elasticsearch_env_java_ops: "-Xms1g -Xmx1g"
