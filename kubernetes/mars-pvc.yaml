@@ -2,7 +2,15 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: local-storage
+  name: local-storage-1
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage-2
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 
@@ -19,9 +27,34 @@ spec:
   - ReadWriteOnce
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Delete
-  storageClassName: local-storage
+  storageClassName: local-storage-1
   local:
     path: /mnt/disks/ssd1
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - "nodea"
+
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: mars-download
+  # namespace: nocsys-mars
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+  - ReadWriteOnce
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage-2
+  local:
+    path: /mnt/disks/ssd2
   nodeAffinity:
     required:
       nodeSelectorTerms:
