@@ -53,9 +53,13 @@ spec:
   ports:
     - protocol: TCP
       port: 5514
+      name: wedge-tcp
     - protocol: UDP
       port: 5514
+      name: wedge-udp
     - protocol: UDP
-      port: 5044  
+      port: 5044
+      name: beats  
     - protocol: UDP
       port: 25826
+      name: collectd
