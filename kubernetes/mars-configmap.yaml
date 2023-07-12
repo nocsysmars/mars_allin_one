@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+# namespace: nocsys-mars
+  name: mars-configmap
+data:
+  mars_env_topology: "clos"
+  mars_env_java_ops: "-Xms4G -Xmx4G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode \
+                      -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
+  mars_env_onos_app: >
+    drivers
+    com.nocsys.drivers.nocsys.gnmi
+    com.nocsys.drivers.nocsys.rest
+    com.nocsys.drivers.nocsys.snmp
+    proxyarp
+    restsb
+    snmp
+    org.onosproject.netconf
+    org.onosproject.drivers.netconf
+    org.onosproject.drivers.h3c.netconf
+    linkdiscovery
+    com.nocsys.provider.switchpolling
+    com.nocsys.eventclient
+    com.nocsys.useraccount
+    com.nocsys.defaultcfg
+    com.nocsys.alert
+    com.nocsys.analyzer
+    com.nocsys.utility
+    com.nocsys.healthycheck
+    com.nocsys.dhcprelay
+    com.nocsys.dhcpserver
+    com.nocsys.dhcpv6server
+    com.nocsys.logicalport
+    com.nocsys.endpoint
+    com.nocsys.monitor
+    com.nocsys.ntpserver
+    com.nocsys.qos
+    com.nocsys.sflow
+    com.nocsys.storm-control
+    com.nocsys.switchmgmt
+    com.nocsys.egp
+    com.nocsys.tenant
+    com.nocsys.tenantlogicalrouter
+    com.nocsys.topology
+    com.nocsys.acl
+    com.nocsys.websocket
+    com.nocsys.webssh
+  logstash_env_java_ops: "-Xmx2g -Xms2g"
+  elasticsearch_env_java_ops: "-Xms1g -Xmx1g"

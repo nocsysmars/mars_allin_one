@@ -40,3 +40,26 @@ spec:
       port: 9200
     - name: inter-node
       port: 9300
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: logstash
+# namespace: nocsys-mars
+spec:
+  selector:
+    app.kubernetes.io/name: mars-logstash
+  ports:
+    - protocol: TCP
+      port: 5514
+      name: wedge-tcp
+    - protocol: UDP
+      port: 5514
+      name: wedge-udp
+    - protocol: UDP
+      port: 5044
+      name: beats  
+    - protocol: UDP
+      port: 25826
+      name: collectd
