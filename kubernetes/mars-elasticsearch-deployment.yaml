@@ -55,7 +55,7 @@ spec:
           value: "0.0.0.0"
       initContainers:
       - name: fix-permissions
-        image: busybox:latest
+        image: busybox:1.28.4
         imagePullPolicy: IfNotPresent
         command: ["sh", "-c", "chown -R 1000:1000 /usr/share/elasticsearch/data"]
         securityContext:
@@ -64,13 +64,13 @@ spec:
           - name: es-data-claim
             mountPath: /usr/share/elasticsearch/data
       - name: increase-vm-max-map
-        image:  busybox:latest
+        image:  busybox:1.28.4
         imagePullPolicy: IfNotPresent
         command: ["sysctl", "-w", "vm.max_map_count=262144"]
         securityContext:
           privileged: true
       - name: increase-fd-ulimit
-        image:  busybox:latest
+        image:  busybox:1.28.4
         imagePullPolicy: IfNotPresent
         command: ["sh", "-c", "ulimit -n 65536"]
         securityContext:
