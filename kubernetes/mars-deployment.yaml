@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-# namespace: nocsys-mars
+  namespace: nocsys-mars
   name: mars
 spec:
   serviceName: mars
@@ -44,7 +44,7 @@ spec:
         - name: KARAF_DEBUG
           value: "true"
         - name: ES_HOSTS
-          value: "elasticsearch.default.svc.cluster.local:9200"
+          value: "elasticsearch.nocsys-mars.svc.cluster.local:9200"
         - name: JAVA_OPTS
           valueFrom:
             configMapKeyRef:
