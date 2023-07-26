@@ -21,6 +21,7 @@ metadata:
   name: mars
   namespace: nocsys-mars
 spec:
+  type: NodePort
   selector:
     app.kubernetes.io/name: mars
   ports:
