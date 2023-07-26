@@ -15,8 +15,6 @@ spec:
       labels:
         app.kubernetes.io/name: mars-elasticsearch
     spec:
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
       containers:
       - name: elasticsearch
         image: 'nocsysmars/elasticsearch:7.9.0-oss'
