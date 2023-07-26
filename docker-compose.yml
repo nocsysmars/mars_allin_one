@@ -14,10 +14,10 @@ services:
   #         max-size: "10m"
   #         max-file: "2"
 
-  ovn:
-    image: ovn-21.03.0-32.fc33
-    build:
-        context: dockerfile/ovn
+  #ovn:
+  #  image: ovn-21.03.0-32.fc33
+  #  build:
+  #      context: dockerfile/ovn
 
   nginx:
     image: nginx:1.14.0
