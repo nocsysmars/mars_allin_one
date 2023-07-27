@@ -28,10 +28,8 @@ data:
     com.nocsys.analyzer
     com.nocsys.utility
     com.nocsys.healthycheck
-    com.nocsys.dhcprelay
     com.nocsys.dhcpserver
     com.nocsys.dhcpv6server
-    com.nocsys.logicalport
     com.nocsys.endpoint
     com.nocsys.monitor
     com.nocsys.ntpserver
@@ -39,11 +37,7 @@ data:
     com.nocsys.sflow
     com.nocsys.storm-control
     com.nocsys.switchmgmt
-    com.nocsys.egp
-    com.nocsys.tenant
-    com.nocsys.tenantlogicalrouter
     com.nocsys.topology
-    com.nocsys.acl
     com.nocsys.websocket
     com.nocsys.webssh
   logstash_env_java_ops: "-Xmx2g -Xms2g"
