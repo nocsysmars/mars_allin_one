@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-# namespace: nocsys-mars
+  namespace: nocsys-mars
   name: mars
 spec:
   serviceName: mars
@@ -19,9 +19,12 @@ spec:
       - name: mars
         image: 'nocsysmars/mars:master'
         imagePullPolicy: IfNotPresent
+        command: ["/root/onos/run_k8s.sh"]
         ports:
         - containerPort: 8101
         - containerPort: 8181
+        - containerPort: 8443
+        - containerPort: 3233
         resources:
           limits:
             memory: "1Gi"
@@ -44,7 +47,7 @@ spec:
         - name: KARAF_DEBUG
           value: "true"
         - name: ES_HOSTS
-          value: "elasticsearch.default.svc.cluster.local:9200"
+          value: "elasticsearch.nocsys-mars.svc.cluster.local:9200"
         - name: JAVA_OPTS
           valueFrom:
             configMapKeyRef:

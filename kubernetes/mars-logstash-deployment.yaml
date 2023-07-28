@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-# namespace: nocsys-mars
+  namespace: nocsys-mars
   name: mars-logstash
 spec:
   replicas: 1
@@ -25,4 +25,4 @@ spec:
               name: mars-configmap
               key: logstash_env_java_ops
         - name: ES_HOSTS
-          value: "elasticsearch.default.svc.cluster.local:9200"
+          value: "elasticsearch.nocsys-mars.svc.cluster.local:9200"

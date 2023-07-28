@@ -19,7 +19,6 @@ kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: es-data
-  # namespace: nocsys-mars
 spec:
   capacity:
     storage: 5Gi
@@ -44,7 +43,6 @@ kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: mars-download
-  # namespace: nocsys-mars
 spec:
   capacity:
     storage: 5Gi

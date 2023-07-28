@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-# namespace: nocsys-mars
+  namespace: nocsys-mars
   name: mars-nginx
 spec:
   replicas: 1
