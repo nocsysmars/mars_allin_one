@@ -19,7 +19,7 @@ spec:
       - name: mars
         image: 'nocsysmars/mars:master'
         imagePullPolicy: IfNotPresent
-        command: ["/root/onos/update_collectd_conf.sh"]
+        command: ["/root/onos/run_k8s.sh"]
         ports:
         - containerPort: 8101
         - containerPort: 8181
