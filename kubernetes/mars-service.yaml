@@ -63,8 +63,9 @@ spec:
     - protocol: UDP
       port: 5514
       name: wedge-udp
-    - protocol: UDP
+    - protocol: TCP
       port: 5044
+      nodePort: 35044
       name: beats  
     - protocol: UDP
       port: 25826
