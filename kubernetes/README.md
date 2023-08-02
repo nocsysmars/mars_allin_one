@@ -18,6 +18,7 @@ run the follow command:
 kubectl apply -f kubernetes/mars-setup.yaml
 kubectl apply -f kubernetes/mars-configmap.yaml
 kubectl apply -f kubernetes/mars-pvc.yaml
+kubectl apply -f kubernetes/mars-secret.yaml
 kubectl apply -f kubernetes/mars-elasticsearch-deployment.yaml
 kubectl apply -f kubernetes/mars-logstash-deployment.yaml
 kubectl apply -f kubernetes/mars-deployment.yaml
