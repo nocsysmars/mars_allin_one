@@ -24,7 +24,6 @@ spec:
         - containerPort: 8101
         - containerPort: 8181
         - containerPort: 8443
-        - containerPort: 3233
         resources:
           limits:
             memory: "1Gi"
