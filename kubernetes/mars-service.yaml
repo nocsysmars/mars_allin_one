@@ -10,6 +10,7 @@ spec:
     app.kubernetes.io/name: mars-nginx
   ports:
     - port: 443
+      nodePort: 30443
       name: https
     - port: 69
       name: tftp
@@ -63,8 +64,9 @@ spec:
     - protocol: UDP
       port: 5514
       name: wedge-udp
-    - protocol: UDP
+    - protocol: TCP
       port: 5044
+      nodePort: 32044
       name: beats  
     - protocol: UDP
       port: 25826
