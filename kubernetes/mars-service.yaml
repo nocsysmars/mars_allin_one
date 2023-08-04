@@ -30,8 +30,6 @@ spec:
       name: mars
     - port: 8443
       name: webssh
-    - port: 3233
-      name: websocket
 
 ---
 apiVersion: v1
