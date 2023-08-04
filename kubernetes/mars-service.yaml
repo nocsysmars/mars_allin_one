@@ -55,19 +55,23 @@ metadata:
   name: logstash
   namespace: nocsys-mars
 spec:
+  type: NodePort
+  externalTrafficPolicy: Local
   selector:
     app.kubernetes.io/name: mars-logstash
   ports:
     - protocol: TCP
       port: 5514
-      name: wedge-tcp
+      name: syslog-tcp
     - protocol: UDP
       port: 5514
-      name: wedge-udp
+      name: syslog-udp
+      nodePort: 32514
     - protocol: TCP
       port: 5044
-      nodePort: 32044
       name: beats  
     - protocol: UDP
       port: 25826
       name: collectd
+    - port: 3233
+      name: websocket
