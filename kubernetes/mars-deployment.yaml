@@ -35,6 +35,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
+        - name: WORK_NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
         - name: ONOS_TOPOLOGY
           valueFrom:
             configMapKeyRef:
