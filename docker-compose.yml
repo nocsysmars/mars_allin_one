@@ -163,7 +163,6 @@ services:
       - ./conf/mars/modules:/etc/collectd/modules
       - ./conf/mars/mars_collectd.conf:/etc/collectd/collectd.conf
       - ./download:/root/onos/download
-      - ./download/config/startup_netcfg.cfg:/root/onos/config/network-cfg.json
       - ./swi:/opt
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
