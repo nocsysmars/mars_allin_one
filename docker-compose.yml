@@ -23,7 +23,8 @@ services:
     image: nginx:1.14.0
     restart: always
     build:
-        context: dockerfile/nginx
+        context: .
+        dockerfile: ./dockerfile/nginx/Dockerfile
     container_name: nginx
     volumes:
         - ./conf/nginx/:/etc/nginx/
@@ -42,7 +43,8 @@ services:
 
   elasticsearch:
     build:
-        context: dockerfile/elasticsearch
+        context: .
+        dockerfile: ./dockerfile/elasticsearch/Dockerfile
     image: elasticsearch:7.9.0-oss
     container_name: elasticsearch
     privileged: true
@@ -82,7 +84,8 @@ services:
 
   logstash:
     build: 
-      context: dockerfile/logstash      
+      context: .
+      dockerfile: ./dockerfile/logstash/Dockerfile
     image: logstash:7.5.2-oss
     container_name: logstash
     privileged: true
