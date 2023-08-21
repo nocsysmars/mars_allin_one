@@ -104,17 +104,17 @@ RUN apt-get update \
 ##
 
 RUN mkdir -p /tmp
-COPY dockerfile/nginx/filebeat-6.4.1-amd64.deb /tmp
+COPY ./dockerfile/nginx/filebeat-6.4.1-amd64.deb /tmp
 RUN dpkg -i /tmp/filebeat-6.4.1-amd64.deb
-COPY dockerfile/nginx/filebeat.yml /etc/filebeat
+COPY ./dockerfile/nginx/filebeat.yml /etc/filebeat
 RUN chmod go-w /etc/filebeat/filebeat.yml
 RUN rm -rf /tmp/filebeat-6.4.1-amd64.deb
-COPY public/.  /opt/public/
-COPY swi/. /opt/swi/
-COPY download/. /opt/download/
-COPY conf/nginx/. /etc/nginx/
-COPY conf/tftpserver/. /etc/xinetd.d/
-COPY dockerfile/nginx//run.sh /root/
+COPY ./public/.  /opt/public/
+COPY ./swi/. /opt/swi/
+COPY ./download/. /opt/download/
+COPY ./conf/nginx/. /etc/nginx/
+COPY ./conf/tftpserver/. /etc/xinetd.d/
+COPY ./dockerfile/nginx/run.sh /root/
 
 EXPOSE 69 80 443
 
