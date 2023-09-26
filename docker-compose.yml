@@ -31,7 +31,7 @@ services:
         - ./conf/tftpserver:/etc/xinetd.d
         - ./swi:/opt/
         - ./download:/opt/download
-        - ./public:/opt/public
+        #- ./public:/opt/public
     #depends_on:
     #  - mars
     network_mode: host
