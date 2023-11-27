@@ -5,8 +5,12 @@ LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 ENV NGINX_VERSION 1.14.0-1~stretch
 ENV NJS_VERSION   1.14.0.0.2.0-1~stretch
 
-RUN set -x \
-	&& apt-get update \
+RUN echo 'deb http://archive.debian.org/debian/ stretch main contrib non-free \n\
+       deb-src http://archive.debian.org/debian/ stretch main contrib non-free \n\
+       deb http://archive.debian.org/debian-security/ stretch/updates main contrib non-free \n\
+       deb-src http://archive.debian.org/debian-security/ stretch/updates main contrib non-free \n\
+       deb http://archive.debian.org/debian/ stretch-backports main contrib non-free' > /etc/apt/sources.list
+RUN apt-get update\
 	&& apt-get install --no-install-recommends --no-install-suggests -y gnupg1 apt-transport-https ca-certificates \
 	&& \
 	NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
