@@ -1,4 +1,4 @@
-version: '2'
+version: '3.4'
 
 services: 
   #keepalive:
@@ -99,7 +99,14 @@ services:
     container_name: mars
     network_mode: host
     privileged: true
-    mem_limit: 16g
+    restart: always
+    #mem_limit: 16g
+    healthcheck:
+      test: curl --fail -u marsinneruser:onlycodeused -I 'http://127.0.0.1:8181/mars/v1/network/configuration' || exit 1
+      interval: 30s
+      retries: 2
+      start_period: 60s
+      timeout: 5s
     environment:
       - "ONOS_IP=HOST_IP_TO_ONOS_IP"
       - "JAVA_OPTS=-Xms16G -Xmx16G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
