@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "This script should enter controller IP and how many hours you would like to detect memory.
-During the memory detection if heap current size has great than heap maximum then record this information into memory_detector.log file. Note: The polling interval is 1 sec. "
+During the memory detection if current heap size has great than threshold heap which is heap maximum size * 0.75.
+It will record the information into memory_detector.log file. Note: The polling interval is 1 sec. "
 
 echo ""
 if [ $# -ne 2 ]; 
@@ -26,14 +27,18 @@ end_time=$((SECONDS + duration))
 while [ $SECONDS -lt $end_time ]; do
     HEAP_CURRENT=$(curl -s -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/v1/system/systemInfo|jq -r '.heapMem.current')
     HEAP_MAX=$(curl -s -H "Cookie: marsGSessionId=$token" -XGET http://$1:8181/mars/v1/system/systemInfo|jq -r '.heapMem.max')
-    
+    ALERT_THRESHOLD=$(printf "%.0f" $(echo "$HEAP_MAX * 0.75" | bc))
+
+    // convert data into Megabyte
     HEAP_CURRENT_MB=$((HEAP_CURRENT / (1024 * 1024)))
     HEAP_MAX_MB=$((HEAP_MAX / (1024 * 1024)))
+    ALERT_THRESHOLD_MB=$((ALERT_THRESHOLD / (1024 * 1024)))
+
     date=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "Current date: $date, Current Heap: $HEAP_CURRENT_MB MB, Max Heap: $HEAP_MAX_MB MB"
-    if [ $HEAP_CURRENT -gt $HEAP_MAX ]
+    echo "Current date: $date, Current Heap: $HEAP_CURRENT_MB MB, Max Heap: $HEAP_MAX_MB MB, Threshold Heap: $ALERT_THRESHOLD_MB MB"
+    if [ $HEAP_CURRENT -gt $ALERT_THRESHOLD ]
     then
-        echo "Current date: $date, Current Heap: $HEAP_CURRENT_MB MB, Max Heap: $HEAP_MAX_MB MB" >> memory_detector.log
+        echo "Current date: $date, Current Heap: $HEAP_CURRENT_MB MB, Max Heap: $HEAP_MAX_MB MB, Threshold Heap: $ALERT_THRESHOLD_MB MB" >> memory_detector.log
     fi
     sleep 1
 done
