@@ -20,7 +20,7 @@ services:
   #      context: dockerfile/ovn
 
   nginx:
-    image: noocsysmars/nginx:1.14.0
+    image: nocsysmars/nginx:1.14.0
     restart: always
     build:
         context: .
