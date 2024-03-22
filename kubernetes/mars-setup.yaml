@@ -2,20 +2,20 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nocsys-mars
+  name: accton-mars
 
 # ---
 # apiVersion: v1
 # kind: ServiceAccount
 # metadata:
-#   name: nocsys
-#   namespace: nocsys-mars
+#   name: accton
+#   namespace: accton-mars
 
 # ---
 # apiVersion: rbac.authorization.k8s.io/v1
 # kind: ClusterRole
 # metadata:
-#   name: nocsys-mars
+#   name: accton-mars
 # rules:
 # - apiGroups: [""]
 #   resources: ["persistentvolumes"]
@@ -37,12 +37,12 @@ metadata:
 # apiVersion: rbac.authorization.k8s.io/v1
 # kind: ClusterRoleBinding
 # metadata:
-#   name: nocsys-mars
+#   name: accton-mars
 # roleRef:
-#   name: nocsys-mars
+#   name: accton-mars
 #   kind: ClusterRole
 #   apiGroup: rbac.authorization.k8s.io
 # subjects:
 # - kind: ServiceAccount
-#   name: nocsys
-#   namespace: nocsys-mars
+#   name: accton
+#   namespace: accton-mars

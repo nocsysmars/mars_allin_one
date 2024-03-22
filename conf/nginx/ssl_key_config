@@ -27,10 +27,10 @@ organizationName_default    = Nocsys
 #   must include the DNS name in the SAN too (otherwise, Chrome and others that
 #   strictly follow the CA/Browser Baseline Requirements will fail).
 commonName          = Common Name (e.g. server FQDN or YOUR name)
-commonName_default      = www.nocsys.com.cn
+commonName_default      = www.accton.com
 
 emailAddress            = Email Address
-emailAddress_default        = macauley.cheng@nocsys.com.cn
+emailAddress_default        = macauley.cheng@accton.com
 
 # Section x509_ext is used when generating a self-signed certificate. I.e., openssl req -x509 ...
 [ x509_ext ]
@@ -68,8 +68,8 @@ nsComment           = "OpenSSL Generated Certificate"
 
 [ alternate_names ]
 
-DNS.1       = nocsys.com.cn
-DNS.2       = www.nocsys.com.cn
+DNS.1       = accton.com
+DNS.2       = www.accton.com
 #DNS.3       = mail.example.com
 #DNS.4       = ftp.example.com
 

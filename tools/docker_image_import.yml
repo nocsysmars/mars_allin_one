@@ -13,9 +13,9 @@
      shell: docker load -i {{ path }}/docker_tar/nginx_1.14.0.tar
    - name: "import mars"
      shell: docker load -i {{ path }}/docker_tar/mars_master.tar
-   - name: "create /opt/nocsys if the dir is not exist"
+   - name: "create /opt/accton if the dir is not exist"
      file:
-       path: /opt/nocsys
+       path: /opt/accton
        state: directory
        mode: 0755
    - name: "start docker containers"

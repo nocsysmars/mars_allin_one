@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mars-web
-  namespace: nocsys-mars
+  namespace: accton-mars
 spec:
   type: NodePort
   selector:
@@ -20,7 +20,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mars
-  namespace: nocsys-mars
+  namespace: accton-mars
 spec:
   type: NodePort
   selector:
@@ -36,7 +36,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: elasticsearch
-  namespace: nocsys-mars
+  namespace: accton-mars
 spec:
   selector:
     app.kubernetes.io/name: mars-elasticsearch
@@ -51,7 +51,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: logstash
-  namespace: nocsys-mars
+  namespace: accton-mars
 spec:
   type: NodePort
   externalTrafficPolicy: Local

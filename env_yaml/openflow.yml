@@ -4,9 +4,9 @@ services:
     environment:
       - "ONOS_TOPOLOGY=openflow"
       - "ONOS_APPS=drivers\
-,com.nocsys.drivers.nocsys.gnmi\
-,com.nocsys.drivers.nocsys.rest\
-,com.nocsys.drivers.nocsys.snmp\
+,com.accton.drivers.accton.gnmi\
+,com.accton.drivers.accton.rest\
+,com.accton.drivers.accton.snmp\
 ,openflow\
 ,proxyarp\
 ,restsb\
@@ -15,17 +15,17 @@ services:
 ,org.onosproject.drivers.netconf\
 ,org.onosproject.drivers.h3c.netconf\
 ,linkdiscovery\
-,com.nocsys.provider.switchpolling\
-,com.nocsys.eventclient\
-,com.nocsys.useraccount\
-,com.nocsys.defaultcfg\
-,com.nocsys.alert\
-,com.nocsys.analyzer\
-,com.nocsys.utility\
-,com.nocsys.healthycheck\
-,com.nocsys.dhcpserver\
-,com.nocsys.dhcpv6server\
-,com.nocsys.endpoint\
-,com.nocsys.qos\
-,com.nocsys.switchmgmt\
-,com.nocsys.webssh"
+,com.accton.provider.switchpolling\
+,com.accton.eventclient\
+,com.accton.useraccount\
+,com.accton.defaultcfg\
+,com.accton.alert\
+,com.accton.analyzer\
+,com.accton.utility\
+,com.accton.healthycheck\
+,com.accton.dhcpserver\
+,com.accton.dhcpv6server\
+,com.accton.endpoint\
+,com.accton.qos\
+,com.accton.switchmgmt\
+,com.accton.webssh"
