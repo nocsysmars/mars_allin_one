@@ -20,7 +20,7 @@ services:
   #      context: dockerfile/ovn
 
   nginx:
-    image: acctonmars/nginx:1.14.0
+    image: nocsysmars/nginx:1.14.0
     restart: always
     build:
         context: .
@@ -45,7 +45,7 @@ services:
     build:
         context: .
         dockerfile: ./dockerfile/elasticsearch/Dockerfile
-    image: acctonmars/elasticsearch:7.9.0-oss
+    image: nocsysmars/elasticsearch:7.9.0-oss
     container_name: elasticsearch
     privileged: true
     network_mode: host
@@ -86,7 +86,7 @@ services:
     build: 
       context: .
       dockerfile: ./dockerfile/logstash/Dockerfile
-    image: acctonmars/logstash:7.5.2-oss
+    image: nocsysmars/logstash:7.5.2-oss
     container_name: logstash
     privileged: true
     network_mode: host
@@ -107,7 +107,7 @@ services:
            max-file: "2"
 
   mars:
-    image: acctonmars/mars:master
+    image: nocsysmars/mars:master
     restart: always
     container_name: mars
     network_mode: host

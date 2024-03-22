@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: logstash
-        image: 'acctonmars/logstash:7.5.2-oss'
+        image: 'nocsysmars/logstash:7.5.2-oss'
         imagePullPolicy: IfNotPresent
         env:
         - name: LS_JAVA_OPTS
