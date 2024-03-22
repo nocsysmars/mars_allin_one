@@ -1,10 +1,10 @@
 # How to use mars in kubernetes?
 ## get docker images
 ```
-docker pull nocsysmars/mars:master
-docker pull nocsysmars/nginx:1.14.0
-docker pull nocsysmars/logstash:7.5.2-oss
-docker pull nocsysmars/elasticsearch:7.9.0-oss
+docker pull acctonmars/mars:master
+docker pull acctonmars/nginx:1.14.0
+docker pull acctonmars/logstash:7.5.2-oss
+docker pull acctonmars/elasticsearch:7.9.0-oss
 docker pull busybox:1.28.4
 ```
 after download these images, you should **check these image names be consist with deployment**, otherwise rename them

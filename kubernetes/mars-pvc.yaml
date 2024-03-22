@@ -67,7 +67,7 @@ spec:
 # kind: PersistentVolumeClaim
 # metadata:
 #   name: es-data-claim
-# namespace: nocsys-mars
+# namespace: accton-mars
 # spec:
 #   volumeMode: Filesystem
 #   accessModes:

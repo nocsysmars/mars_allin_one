@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: es-cluster
-  namespace: nocsys-mars
+  namespace: accton-mars
 spec:
   serviceName: elasticsearch
   replicas: 1
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: elasticsearch
-        image: 'nocsysmars/elasticsearch:7.9.0-oss'
+        image: 'acctonmars/elasticsearch:7.9.0-oss'
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9200

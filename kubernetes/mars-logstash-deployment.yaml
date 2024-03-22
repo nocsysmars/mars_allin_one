@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: nocsys-mars
+  namespace: accton-mars
   name: mars-logstash
 spec:
   replicas: 1
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: logstash
-        image: 'nocsysmars/logstash:7.5.2-oss'
+        image: 'acctonmars/logstash:7.5.2-oss'
         imagePullPolicy: IfNotPresent
         env:
         - name: LS_JAVA_OPTS
@@ -25,4 +25,4 @@ spec:
               name: mars-configmap
               key: logstash_env_java_ops
         - name: ES_HOSTS
-          value: "elasticsearch.nocsys-mars.svc.cluster.local:9200"
+          value: "elasticsearch.accton-mars.svc.cluster.local:9200"
