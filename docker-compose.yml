@@ -20,7 +20,7 @@ services:
   #      context: dockerfile/ovn
 
   nginx:
-    image: nocsysmars/nginx:1.14.0
+    image: acctonmars/nginx:1.14.0
     restart: always
     build:
         context: .
@@ -45,7 +45,7 @@ services:
     build:
         context: .
         dockerfile: ./dockerfile/elasticsearch/Dockerfile
-    image: nocsysmars/elasticsearch:7.9.0-oss
+    image: acctonmars/elasticsearch:7.9.0-oss
     container_name: elasticsearch
     privileged: true
     network_mode: host
@@ -86,7 +86,7 @@ services:
     build: 
       context: .
       dockerfile: ./dockerfile/logstash/Dockerfile
-    image: nocsysmars/logstash:7.5.2-oss
+    image: acctonmars/logstash:7.5.2-oss
     container_name: logstash
     privileged: true
     network_mode: host
@@ -107,7 +107,7 @@ services:
            max-file: "2"
 
   mars:
-    image: nocsysmars/mars:master
+    image: acctonmars/mars:master
     restart: always
     container_name: mars
     network_mode: host
@@ -132,9 +132,9 @@ services:
 #This APPS for CLOS tenant 
 #to use different ONOS_APPS env, please ref README
       - "ONOS_APPS=drivers\
-,com.nocsys.drivers.nocsys.gnmi\
-,com.nocsys.drivers.nocsys.rest\
-,com.nocsys.drivers.nocsys.snmp\
+,com.accton.drivers.accton.gnmi\
+,com.accton.drivers.accton.rest\
+,com.accton.drivers.accton.snmp\
 ,proxyarp\
 ,restsb\
 ,snmp\
@@ -142,32 +142,32 @@ services:
 ,org.onosproject.drivers.netconf\
 ,org.onosproject.drivers.h3c.netconf\
 ,linkdiscovery\
-,com.nocsys.provider.switchpolling\
-,com.nocsys.eventclient\
-,com.nocsys.useraccount\
-,com.nocsys.defaultcfg\
-,com.nocsys.alert\
-,com.nocsys.analyzer\
-,com.nocsys.utility\
-,com.nocsys.healthycheck\
-,com.nocsys.dhcprelay\
-,com.nocsys.dhcpserver\
-,com.nocsys.dhcpv6server\
-,com.nocsys.logicalport\
-,com.nocsys.endpoint\
-,com.nocsys.monitor\
-,com.nocsys.ntpserver\
-,com.nocsys.qos\
-,com.nocsys.sflow\
-,com.nocsys.storm-control\
-,com.nocsys.switchmgmt\
-,com.nocsys.egp\
-,com.nocsys.tenant\
-,com.nocsys.tenantlogicalrouter\
-,com.nocsys.topology\
-,com.nocsys.acl\
-,com.nocsys.websocket\
-,com.nocsys.webssh"
+,com.accton.provider.switchpolling\
+,com.accton.eventclient\
+,com.accton.useraccount\
+,com.accton.defaultcfg\
+,com.accton.alert\
+,com.accton.analyzer\
+,com.accton.utility\
+,com.accton.healthycheck\
+,com.accton.dhcprelay\
+,com.accton.dhcpserver\
+,com.accton.dhcpv6server\
+,com.accton.logicalport\
+,com.accton.endpoint\
+,com.accton.monitor\
+,com.accton.ntpserver\
+,com.accton.qos\
+,com.accton.sflow\
+,com.accton.storm-control\
+,com.accton.switchmgmt\
+,com.accton.egp\
+,com.accton.tenant\
+,com.accton.tenantlogicalrouter\
+,com.accton.topology\
+,com.accton.acl\
+,com.accton.websocket\
+,com.accton.webssh"
     volumes:
       - ./conf/mars/modules:/etc/collectd/modules
       - ./conf/mars/mars_collectd.conf:/etc/collectd/collectd.conf
