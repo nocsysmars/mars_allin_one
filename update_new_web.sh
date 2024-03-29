@@ -1,9 +1,9 @@
 #!/bin/bash
 
-read -p 'branch (main; sia; vcmy): ' BRANCH
+read -p 'branch (accton; sia; vcmy): ' BRANCH
 
 case $BRANCH in
-     main) read -p 'brand name (mars; ares): ' BRAND
+     accton) read -p 'brand name (mars; ares): ' BRAND
 	     case $BRAND in
 		     mars) BRAND="mars_prod" ;;
                      ares) BRAND="ares_prod" ;;
