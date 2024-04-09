@@ -107,7 +107,7 @@ services:
            max-file: "2"
 
   mars:
-    image: nocsysmars/mars:master
+    image: nocsysmars/mars:accton
     restart: always
     container_name: mars
     network_mode: host
