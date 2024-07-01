@@ -69,7 +69,7 @@ spec:
       name: mars-download-claim
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "local-storage-2"
+      #storageClassName: "local-storage-2"
       resources:
         requests:
           storage: 4Gi      

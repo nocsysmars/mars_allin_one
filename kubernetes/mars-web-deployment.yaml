@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nocsysmars/nginx:1.14.0
+        image: nocsysmars/nginx:1.14.0-mars
         imagePullPolicy: IfNotPresent
         command: ["/etc/nginx/update_mars_ip.sh"]
         ports:
