@@ -28,7 +28,16 @@ spec:
           requests:
             memory: "8Gi"
           requests:
-              cpu: 500m
+              cpu: 2
+        livenessProbe:
+            httpGet:
+              path: /mars/v1/network/configuration
+              scheme: HTTP
+              port: 8181
+            initialDelaySeconds: 300
+            periodSeconds: 60
+            successThreshold: 1
+            failureThreshold: 3
         env:
         - name: ONOS_IP
           valueFrom:
