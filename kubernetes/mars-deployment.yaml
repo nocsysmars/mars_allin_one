@@ -64,6 +64,12 @@ spec:
         volumeMounts:
         - name: mars-download-claim
           mountPath: /root/onos/download
+        livenessProbe:
+            exec:
+              command:
+                - >-
+                  curl --fail -u marsinneruser:onlycodeused -I
+                  http://127.0.0.1:8181/mars/v1/network/configuration
   volumeClaimTemplates:
   - metadata:
       name: mars-download-claim
