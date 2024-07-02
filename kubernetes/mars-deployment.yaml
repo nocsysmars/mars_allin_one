@@ -67,6 +67,8 @@ spec:
         livenessProbe:
             exec:
               command:
+                - /bin/sh
+                - '-c'
                 - >-
                   curl --fail -u marsinneruser:onlycodeused -I
                   http://127.0.0.1:8181/mars/v1/network/configuration
