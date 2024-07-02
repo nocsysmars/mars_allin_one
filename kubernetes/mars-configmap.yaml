@@ -6,7 +6,7 @@ metadata:
   name: mars-configmap
 data:
   mars_env_topology: "clos"
-  mars_env_java_ops: "-Xms4G -Xmx4G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode \
+  mars_env_java_ops: "-Xms8G -Xmx8G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode \
                       -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
   mars_env_onos_app: >
     drivers
@@ -41,4 +41,4 @@ data:
     com.accton.websocket
     com.accton.webssh
   logstash_env_java_ops: "-Xmx2g -Xms2g"
-  elasticsearch_env_java_ops: "-Xms1g -Xmx1g"
+  elasticsearch_env_java_ops: "-Xms2g -Xmx2g"

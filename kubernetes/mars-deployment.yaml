@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: mars
-        image: 'acctonmars/mars:master'
+        image: 'nocsysmars/mars:accton'
         imagePullPolicy: IfNotPresent
         command: ["/root/onos/run_k8s.sh"]
         ports:
@@ -25,8 +25,8 @@ spec:
         - containerPort: 8181
         - containerPort: 8443
         resources:
-          limits:
-            memory: "4Gi"
+          requests:
+            memory: "8Gi"
           requests:
               cpu: 500m
         env:
