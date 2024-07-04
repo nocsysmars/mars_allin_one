@@ -16,8 +16,6 @@ data:
     proxyarp
     restsb
     snmp
-    org.onosproject.netconf
-    org.onosproject.drivers.netconf
     org.onosproject.drivers.h3c.netconf
     linkdiscovery
     com.accton.provider.switchpolling
