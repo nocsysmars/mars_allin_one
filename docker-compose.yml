@@ -127,7 +127,7 @@ services:
       - "FABRIC_ADDRESS=unnumbered"
 #      - "ES_DOC=_doc"
       - "ES_HOSTS=${ES_HOSTS_IP:-127.0.0.1:9200}"
-      - "JAVA_OPTS=-Xms4G -Xmx4G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dcom.sun.management.jmxremote -Dds.lock.timeout.milliseconds=10000"
+      - "JAVA_OPTS=-Xms4G -Xmx4G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dds.lock.timeout.milliseconds=10000"
 #      - "KARAF_DEBUG=true"      
 #This APPS for CLOS tenant 
 #to use different ONOS_APPS env, please ref README
