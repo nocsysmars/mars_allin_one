@@ -82,7 +82,7 @@ spec:
       name: es-data-claim
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "local-storage-1"
+      #storageClassName: "local-storage-1"
       resources:
         requests:
           storage: 4Gi
