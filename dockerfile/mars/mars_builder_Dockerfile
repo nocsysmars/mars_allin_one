@@ -13,3 +13,7 @@ RUN apt-get update && \
     mkdir -p /src/tar/switch/init && \
     mkdir -p /src/tar/download/config && \
     rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /src/onos && mkdir -p /src/onos/bin && mkdir -p /src/onos/bin/cache
+RUN git clone https://github.com/nocsysmars/mars_downloadfiles.git /src/onos/bin/cache
+RUN mv /src/onos/bin/cache/.buck_sha /src/onos/bin
