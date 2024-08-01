@@ -2,17 +2,17 @@
 ## Default Elasticsearch configuration from elasticsearch-docker.
 ## from https://github.com/elastic/elasticsearch-docker/blob/master/build/elasticsearch/elasticsearch.yml
 #
-cluster.name: "mycluster"
-node.name: "HOST_NAME"
-network.host: 127.0.0.1
-network.publish_host: HOST_IP_TO_ONOS_IP
+cluster.name: "marscluster"
+node.name: "mars-es-node"
+network.host: 10.10.10.3
+network.publish_host: 10.10.10.3
 # minimum_master_nodes need to be explicitly set when bound on a public IP
 # set to 1 to allow single node clusters
 # Details: https://github.com/elastic/elasticsearch/pull/17288
 discovery.zen.minimum_master_nodes: 1
 #discovery.zen.minimum_master_nodes: 2
-discovery.zen.ping.unicast.hosts: ["HOST_IP_TO_ONOS_IP"]
-cluster.initial_master_nodes: ["HOST_NAME"]
+discovery.zen.ping.unicast.hosts: ["10.10.10.3"]
+cluster.initial_master_nodes: ["mars-es-node"]
 
 #disable to become read only when disk full
 cluster.routing.allocation.disk.threshold_enabled: true
