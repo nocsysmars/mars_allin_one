@@ -66,12 +66,6 @@ services:
       - ./conf/elasticsearch/jvm.options:/usr/share/elasticsearch/config/jvm.options:ro
       - ./conf/elasticsearch/backup:/mnt/backup:rw
       - ./conf/elasticsearch/data:/usr/share/elasticsearch/data:rw
-    #environment:
-      #ES_JAVA_OPTS: "-Xmx1024m -Xms1024m"
-      #network.bind_host: "127.0.0.1"
-      #network.publish_host: "192.168.40.1"
-      #cluster.name: "marscluster"
-      #node.name: "es1"
     logging:
         driver: "json-file"
         options:
@@ -133,7 +127,7 @@ services:
            max-file: "2"
 
   mars:
-    image: mars:accton
+    image: nocsysmars/mars:accton
     restart: always
     container_name: mars
     #network_mode: host
