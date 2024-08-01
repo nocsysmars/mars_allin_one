@@ -1,4 +1,5 @@
 # Pre-install packages for mars
+#FROM nocsysmars/openjdk:8-jre-slim-bullseye
 FROM openjdk:8-jre-slim-bullseye
 ENV DEBIAN_FRONTEND noninteractive
 
