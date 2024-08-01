@@ -138,8 +138,8 @@ services:
     container_name: mars
     #network_mode: host
     ports:
-      #- 308181:8181
-      - 308101:8101
+      #- 38181:8181
+      - 38101:8101
     networks:
        network:
           ipv4_address: 10.10.10.5
