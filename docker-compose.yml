@@ -20,13 +20,14 @@ services:
   #      context: dockerfile/ovn
 
   nginx:
-    image: nocsysmars/nginx:1.14.0
+    image: nocsysmars/nginx:1.27.0-mars
     restart: always
     build:
         context: .
         dockerfile: ./dockerfile/nginx/Dockerfile
     container_name: nginx
     volumes:
+        - ./conf/nginx/filebeat.yml:/etc/filebeat/filebeat.yml
         - ./conf/nginx/:/etc/nginx/
         - ./conf/tftpserver:/etc/xinetd.d
         - ./swi:/opt/
@@ -34,7 +35,13 @@ services:
         - ./public:/opt/public
     #depends_on:
     #  - mars
-    network_mode: host
+    #network_mode: host
+    ports:
+    - 443:443
+    - 80:80
+    networks:
+       network:
+          ipv4_address: 10.10.10.2
     logging:
         driver: "json-file"
         options:
@@ -48,7 +55,12 @@ services:
     image: nocsysmars/elasticsearch:7.9.0-oss
     container_name: elasticsearch
     privileged: true
-    network_mode: host
+    #network_mode: host
+    #ports:
+    #- 9200:9200
+    networks:
+       network:
+          ipv4_address: 10.10.10.3
     volumes:
       - ./conf/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
       - ./conf/elasticsearch/jvm.options:/usr/share/elasticsearch/config/jvm.options:ro
@@ -57,7 +69,7 @@ services:
     #environment:
       #ES_JAVA_OPTS: "-Xmx1024m -Xms1024m"
       #network.bind_host: "127.0.0.1"
-      #network.publish_host: "HOST_IP_TO_ONOS_IP"
+      #network.publish_host: "192.168.40.1"
       #cluster.name: "marscluster"
       #node.name: "es1"
     logging:
@@ -66,20 +78,25 @@ services:
            max-size: "10m"
            max-file: "2"
 
-#  kibana:
-#    image: docker.elastic.co/kibana/kibana-oss:7.9.0
-#    container_name: kibana
-#    privileged: true
-#    network_mode: host
-#    volumes:
-#      - ./conf/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
-#    logging:
-#        driver: "json-file"
-#        options:
-#           max-size: "10m"
-#           max-file: "2"
-#    depends_on:
-#      - elasticsearch
+  #kibana:
+  #  image: docker.elastic.co/kibana/kibana-oss:7.9.0
+  #  container_name: kibana
+  #  privileged: true
+  #  #network_mode: host
+  #  ports:
+  #  - 5601:5601
+  #  networks:
+  #     network:
+  #        ipv4_address: 10.10.10.6
+  #  volumes:
+  #    - ./conf/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+  #  logging:
+  #      driver: "json-file"
+  #      options:
+  #         max-size: "10m"
+  #         max-file: "2"
+  #  depends_on:
+  #    - elasticsearch
 
 
   logstash:
@@ -89,7 +106,16 @@ services:
     image: nocsysmars/logstash:7.5.2-oss
     container_name: logstash
     privileged: true
-    network_mode: host
+    #network_mode: host
+    ports:
+        - 6614:6614
+        - 5514:5514
+        - 5044:5044
+        - 6343:6343
+        - 25826:25826
+    networks:
+       network:
+          ipv4_address: 10.10.10.4
     volumes:
       - ./conf/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./conf/logstash/pipeline:/usr/share/logstash/pipeline:ro
@@ -97,7 +123,7 @@ services:
       - ./conf/logstash/default-template.json:/usr/share/logstash/default-template.json:ro
     environment:
       LS_JAVA_OPTS: "-Xmx2g -Xms2g"
-      ES_HOSTS: "${ES_HOSTS_IP:-127.0.0.1:9200}"
+      ES_HOSTS: "${ES_HOSTS_IP:-10.10.10.3:9200}"
     depends_on:
       - elasticsearch
     logging:
@@ -107,28 +133,37 @@ services:
            max-file: "2"
 
   mars:
-    image: nocsysmars/mars:accton
+    image: mars:accton
     restart: always
     container_name: mars
-    network_mode: host
+    #network_mode: host
+    ports:
+      #- 308181:8181
+      - 308101:8101
+    networks:
+       network:
+          ipv4_address: 10.10.10.5
     privileged: true
     #mem_limit: 4g
     healthcheck:
-      test: curl --fail -u marsinneruser:onlycodeused -I 'http://127.0.0.1:8181/mars/v1/network/configuration' || exit 1
+      test: curl --fail -u marsinneruser:onlycodeused -I 'http://10.10.10.5:8181/mars/v1/network/configuration' || exit 1
       interval: 30s
       retries: 2
       start_period: 60s
       timeout: 5s
     environment:
-      - "ONOS_IP=HOST_IP_TO_ONOS_IP"
+      #WORK_NODE_IP, LOGSTASH_SERVICE_HOST for logstash websocket
+      - "WORK_NODE_IP=10.10.10.4"
+      - "LOGSTASH_SERVICE_HOST=10.10.10.4"
+      - "ONOS_IP=10.10.10.5"
       #clos,staticfabric-fr,staticfabric,bgptopology
       - "ONOS_TOPOLOGY=clos"
-      #unnumbered, numbered
+      #unnumbered, numbered for sonic like
       - "FABRIC_ADDRESS=unnumbered"
 #      - "ES_DOC=_doc"
-      - "ES_HOSTS=${ES_HOSTS_IP:-127.0.0.1:9200}"
+      - "ES_HOSTS=${ES_HOSTS_IP:-10.10.10.3:9200}"
       - "JAVA_OPTS=-Xms4G -Xmx4G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -Dds.lock.timeout.milliseconds=10000"
-#      - "KARAF_DEBUG=true"      
+#      - "KARAF_DEBUG=true"
 #This APPS for CLOS tenant 
 #to use different ONOS_APPS env, please ref README
       - "ONOS_APPS=drivers\
@@ -169,7 +204,7 @@ services:
 ,com.accton.websocket\
 ,com.accton.webssh"
     volumes:
-      - ./conf/mars/modules:/etc/collectd/modules
+      - ./conf/mars/filebeat.yml:/etc/filebeat/filebeat.yml
       - ./conf/mars/mars_collectd.conf:/etc/collectd/collectd.conf
       - ./download:/root/onos/download
       - ./swi:/opt
@@ -240,3 +275,10 @@ services:
 #      options:
 #        max-size: "1m"
 #        max-file: "2"
+networks:
+    network:
+        driver: bridge
+        ipam:
+          config:
+             - subnet: 10.10.10.0/24
+

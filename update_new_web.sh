@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p 'branch (accton; sia; vcmy): ' BRANCH
+read -p 'branch (accton; sia; vcmy; main): ' BRANCH
 
 case $BRANCH in
      accton) read -p 'brand name (mars; ares): ' BRAND
@@ -20,6 +20,13 @@ case $BRANCH in
 	     ;;
      vcmy) BRAND="vcmy_prod"
 	     ;;
+     main)
+         case $BRAND in
+             mars) BRAND="mars_prod" ;;
+                     ares) BRAND="ares_prod" ;;
+             *) echo "Wrong brand name, only mars or ares"; exit;;
+             esac
+         ;;
      *)
 	echo "Wrong Branch Name"
 	exit;;
