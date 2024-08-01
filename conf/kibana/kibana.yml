@@ -4,7 +4,7 @@
 # Specifies the address to which the Kibana server will bind. IP addresses and host names are both valid values.
 # The default is 'localhost', which usually means remote machines will not be able to connect.
 # To allow connections from remote users, set this parameter to a non-loopback address.
-server.host: "HOST_IP_TO_ONOS_IP"
+server.host: "10.10.10.6"
 
 # Enables you to specify a path to mount Kibana at if you are running behind a proxy.
 # Use the `server.rewriteBasePath` setting to tell Kibana if it should remove the basePath
@@ -25,7 +25,7 @@ server.host: "HOST_IP_TO_ONOS_IP"
 #server.name: "your-hostname"
 
 # The URLs of the Elasticsearch instances to use for all your queries.
-#elasticsearch.hosts: ["http://localhost:9200"]
+#elasticsearch.hosts: ["http://10.10.10.3:9200"]
 
 # When this setting's value is true Kibana uses the hostname specified in the server.host
 # setting. When the value of this setting is false, Kibana uses the hostname of the host
@@ -138,7 +138,7 @@ server.host: "HOST_IP_TO_ONOS_IP"
 #server.name: "your-hostname"
 
 # The URLs of the Elasticsearch instances to use for all your queries.
-#elasticsearch.hosts: ["http://localhost:9200"]
+elasticsearch.hosts: ["http://10.10.10.3:9200"]
 
 # When this setting's value is true Kibana uses the hostname specified in the server.host
 # setting. When the value of this setting is false, Kibana uses the hostname of the host
