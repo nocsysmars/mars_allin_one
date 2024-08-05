@@ -39,6 +39,8 @@ services:
     ports:
     - 443:443
     - 80:80
+    #tftp
+    - 69:69
     networks:
        network:
           ipv4_address: 10.10.10.2
@@ -134,6 +136,9 @@ services:
     ports:
       #- 38181:8181
       - 38101:8101
+      #for dhcp
+      - 67:67
+      - 68:68
     networks:
        network:
           ipv4_address: 10.10.10.5
