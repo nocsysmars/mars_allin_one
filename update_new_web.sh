@@ -64,4 +64,4 @@ fi
 rm -rf public/*
 cp -r mars_web_plus/public/* public/
 #rm -rf mars_web_plus
-
+echo "Branch $BRAND, branch is $BRANCH"
