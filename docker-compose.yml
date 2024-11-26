@@ -15,7 +15,7 @@ services:
   #         max-file: "2"
 
   nginx:
-    image: nginx:1.14.0
+    image: nocsysmars/nginx:1.14.0-sia
     build:
         context: dockerfile/nginx
     container_name: nginx
@@ -37,7 +37,7 @@ services:
   elasticsearch:
     build:
         context: dockerfile/elasticsearch 
-    image: elasticsearch:6.1.0         
+    image: nocsysmars/elasticsearch:6.1.0-sia
     container_name: elasticsearch
     privileged: true
     network_mode: host
@@ -77,7 +77,7 @@ services:
   logstash:
     build: 
       context: dockerfile/logstash   
-    image: logstash:6.1.0      
+    image: nocsysmars/logstash:6.1.0-sia
     container_name: logstash
     privileged: true
     network_mode: host
@@ -95,7 +95,7 @@ services:
            max-file: "2"
 
   mars:
-    image: mars:sia
+    image: nocsysmars/mars:sia
     container_name: mars
     network_mode: host
     privileged: true
