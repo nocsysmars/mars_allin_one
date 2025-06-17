@@ -6,11 +6,12 @@ ENV NGINX_VERSION 1.14.0-1~stretch
 ENV NJS_VERSION   1.14.0.0.2.0-1~stretch
 
 RUN echo 'deb http://archive.debian.org/debian/ stretch main contrib non-free \n\
-       deb-src http://archive.debian.org/debian/ stretch main contrib non-free \n\
-       deb http://archive.debian.org/debian-security/ stretch/updates main contrib non-free \n\
-       deb-src http://archive.debian.org/debian-security/ stretch/updates main contrib non-free \n\
-       deb http://archive.debian.org/debian/ stretch-backports main contrib non-free' > /etc/apt/sources.list
-RUN apt-get update\
+	deb-src http://archive.debian.org/debian/ stretch main contrib non-free \n\
+	deb http://archive.debian.org/debian-security/ stretch/updates main contrib non-free \n\
+	deb-src http://archive.debian.org/debian-security/ stretch/updates main contrib non-free \n\
+	deb http://archive.debian.org/debian/ stretch-backports main contrib non-free' > /etc/apt/sources.list
+
+RUN apt-get update \
 	&& apt-get install --no-install-recommends --no-install-suggests -y gnupg1 apt-transport-https ca-certificates \
 	&& \
 	NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
@@ -103,14 +104,17 @@ RUN apt-get update \
 ##
 
 RUN mkdir -p /tmp
-COPY ./filebeat-6.4.1-amd64.deb /tmp
+COPY ./dockerfile/nginx/filebeat-6.4.1-amd64.deb /tmp
 RUN dpkg -i /tmp/filebeat-6.4.1-amd64.deb
-COPY ./filebeat.yml /etc/filebeat
 RUN rm -rf /tmp/filebeat-6.4.1-amd64.deb
-COPY ./run.sh /root/
+COPY ./public/.  /opt/public/
+COPY ./swi/. /opt/swi/
+COPY ./download/. /opt/download/
+COPY ./conf/nginx/. /etc/nginx/
+COPY ./conf/tftpserver/. /etc/xinetd.d/
+COPY ./dockerfile/nginx/run.sh /root/
 
 EXPOSE 69 80 443
 
 STOPSIGNAL SIGTERM
 CMD ["./root/run.sh"]
-#CMD ["nginx", "-g", "daemon off;"]
