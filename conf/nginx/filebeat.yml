@@ -193,3 +193,4 @@ output.logstash:
 # have the Elasticsearch output configured, you can simply uncomment the
 # following line.
 #xpack.monitoring.elasticsearch:
+#
