@@ -117,9 +117,6 @@ services:
         ,com.nocsys.monitor\
         ,com.nocsys.calcpath\
         ,com.nocsys.defaultcfg\
-        ,org.onosproject.dhcprelay \
-        ,com.nocsys.dhcpserver\
-        ,com.nocsys.dhcpv6server\
         ,com.nocsys.drivers.nocsys.gnmi\
         ,com.nocsys.drivers.nocsys.rest\
         ,com.nocsys.drivers.nocsys.snmp\
@@ -127,11 +124,11 @@ services:
         ,com.nocsys.healthycheck\
         ,com.nocsys.ntpserver\
         ,com.nocsys.provider.switchpolling\
+        ,com.nocsys.storm-control \
         ,com.nocsys.qos\
         ,com.nocsys.switchmgmt\
         ,com.nocsys.useraccount\
         ,com.nocsys.utility\
-        ,com.nocsys.staticrouting\
         ,com.nocsys.webssh"
     volumes:
       - ./conf/mars/modules:/etc/collectd/modules
