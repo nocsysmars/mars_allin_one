@@ -137,5 +137,5 @@ EXPOSE 69 80 443
 
 STOPSIGNAL SIGTERM
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["./root/run.sh"]
 
